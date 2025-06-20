@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Влияние Кофеина: Краткосрочный Анализ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-arrow {
+            font-size: 2rem;
+            line-height: 1;
+            color: #7a5195; /* Corresponds to purple in Brilliant Blues */
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Selected Color Palette: Brilliant Blues (#003f5c, #7a5195, #bc5090, #ef5675, #ff764a, #ffa600) -->
+    <!-- Confirmed: No SVG graphics or Mermaid JS used in this output. -->
+    <!-- Infographic Narrative Plan:
+        1. Introduction: Caffeine's mechanism of action (flowchart)
+        2. Cognitive Boost: Reaction speed vs. accuracy (line chart)
+        3. Optimal Dose for Athletes (bar chart)
+        4. Emotional Balance: Alertness vs. Anxiety (radar chart, donut chart)
+        5. Dosage Guide: Recommended daily intake (styled info boxes)
+        6. Personal Genetics: Individual variations (text explanation)
+    -->
+
+    <header class="bg-white shadow-md p-6 text-center sticky top-0 z-10">
+        <h1 class="text-3xl md:text-4xl font-bold" style="color: #003f5c;">Краткосрочное Влияние Кофеина</h1>
+        <p class="text-lg text-gray-600 mt-2">Визуализация Эффектов на Мозг и Настроение</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold mb-4" style="color: #003f5c;">Механизм Действия: Наука Вашей Бодрости</h2>
+                <p class="mb-6 text-gray-700">Кофеин действует как умный имитатор в вашем мозге, блокируя аденозиновые рецепторы, ответственные за сигналы усталости. Это стимулирует высвобождение нейротрансмиттеров, способствующих бодрствованию, таких как дофамин и норадреналин.</p>
+                <div class="flex flex-col md:flex-row items-center justify-around text-center gap-4">
+                    <div class="p-4 rounded-lg bg-gray-100 w-full md:w-1/4 shadow-sm">
+                        <span class="text-4xl">☕</span>
+                        <h3 class="font-bold mt-2">1. Потребление Кофеина</h3>
+                        <p class="text-sm">Попадает в мозг</p>
+                    </div>
+                    <div class="flowchart-arrow">➔</div>
+                    <div class="p-4 rounded-lg bg-gray-100 w-full md:w-1/4 shadow-sm">
+                         <span class="text-4xl">🛑</span>
+                        <h3 class="font-bold mt-2">2. Блокировка Аденозина</h3>
+                        <p class="text-sm">Рецепторы усталости "отключены"</p>
+                    </div>
+                    <div class="flowchart-arrow">➔</div>
+                    <div class="p-4 rounded-lg bg-gray-100 w-full md:w-1/4 shadow-sm">
+                        <span class="text-4xl">🧠</span>
+                        <h3 class="font-bold mt-2">3. Высвобождение Дофамина</h3>
+                        <p class="text-sm">Улучшение настроения и внимания</p>
+                    </div>
+                     <div class="flowchart-arrow">➔</div>
+                    <div class="p-4 rounded-lg bg-gray-100 w-full md:w-1/4 shadow-sm">
+                         <span class="text-4xl">⚡</span>
+                        <h3 class="font-bold mt-2">4. Результат</h3>
+                        <p class="text-sm">Повышенная бдительность</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold mb-4" style="color: #003f5c;">Когнитивный Стимул: Скорость против Точности</h2>
+                 <p class="mb-4 text-gray-700">Влияние кофеина на когнитивные функции нелинейно. Скорость реакции стабильно улучшается с увеличением дозы. Однако точность достигает пика при умеренных дозах (~200-300 мг), а затем может снижаться из-за перевозбуждения.</p>
+                <div class="chart-container">
+                    <canvas id="reactionVsAccuracyChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold mb-4" style="color: #7a5195;">Оптимальная Доза для Спортсменов</h2>
+                <p class="mb-4 text-gray-700">Для спортсменов доза 3 мг/кг массы тела обеспечивает максимальное улучшение когнитивных функций без существенных побочных эффектов. Увеличение дозы до 9 мг/кг не приносит дополнительной пользы и повышает риски.</p>
+                 <div class="chart-container" style="height: 350px;">
+                    <canvas id="athleteDoseChart"></canvas>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold mb-4" style="color: #bc5090;">Эмоциональный Баланс: Бодрость или Тревога?</h2>
+                <p class="mb-4 text-gray-700">Кофеин — мощный модулятор настроения. Низкие дозы усиливают энергию и бодрость, минимизируя риски. Высокие дозы (>400 мг) могут значительно увеличить уровень тревожности и негативно сказаться на качестве сна.</p>
+                <div class="chart-container">
+                    <canvas id="moodRadarChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col justify-center items-center text-center">
+                <h2 class="text-2xl font-bold mb-4" style="color: #ef5675;">Риск Тревожности</h2>
+                <p class="mb-4 text-gray-700">Потребление свыше 400 мг кофеина в день значительно увеличивает риск развития тревожных состояний.</p>
+                <div class="chart-container" style="height: 250px;">
+                    <canvas id="anxietyDonutChart"></canvas>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold mb-4 text-center" style="color: #ff764a;">Руководство по Дозировке: Найдите Свой Идеал</h2>
+                <p class="mb-6 text-gray-700 text-center">Безопасной суточной дозой для большинства взрослых считается до 400 мг. Эффекты сильно зависят от количества.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="border-2 border-green-400 rounded-lg p-4 text-center shadow-md">
+                        <h3 class="font-bold text-lg text-green-700">Умеренная Доза (100-200 мг)</h3>
+                        <p class="text-5xl my-4">✅</p>
+                        <p class="text-sm text-gray-600"><strong>Эффекты:</strong> Оптимальное улучшение внимания и точности, повышение бодрости, улучшение настроения. Минимальные риски.</p>
+                    </div>
+                     <div class="border-2 border-yellow-400 rounded-lg p-4 text-center shadow-md">
+                        <h3 class="font-bold text-lg text-yellow-700">Повышенная Доза (200-400 мг)</h3>
+                        <p class="text-5xl my-4">⚠️</p>
+                        <p class="text-sm text-gray-600"><strong>Эффекты:</strong> Дальнейшее улучшение скорости реакции, но точность может начать падать. Умеренный риск тревожности и нарушения сна.</p>
+                    </div>
+                     <div class="border-2 border-red-400 rounded-lg p-4 text-center shadow-md">
+                        <h3 class="font-bold text-lg text-red-700">Высокая Доза (>400 мг)</h3>
+                        <p class="text-5xl my-4">❌</p>
+                        <p class="text-sm text-gray-600"><strong>Эффекты:</strong> Высокий риск тревожности, раздражительности, бессонницы. Когнитивные преимущества могут нивелироваться побочными эффектами.</p>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold mb-4" style="color: #ffa600;">Это Личное: Генетика и Кофеин</h2>
+                 <p class="text-gray-700">Почему ваш друг может выпить эспрессо на ночь и уснуть, а вы — нет? Ответ кроется в генах. Варианты генов, таких как <span class="font-semibold bg-orange-100 px-2 py-1 rounded">CYP1A2</span> (отвечает за скорость метаболизма) и <span class="font-semibold bg-orange-100 px-2 py-1 rounded">ADORA2A</span> (рецептор аденозина), определяют вашу индивидуальную чувствительность, эффективность и профиль побочных эффектов кофеина. Не существует универсальной дозы, подходящей для всех.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="text-center p-6 mt-8 bg-gray-800 text-white">
+        <p>Информация основана на научных исследованиях и предназначена для образовательных целей.</p>
+        <p class="text-sm text-gray-400 mt-2">От автора YASHKA LEGEND для HORMESIS HUB</p>
+        <p class="text-sm text-gray-400 mt-2">© 2025 Визуализация Данных</p>
+    </footer>
+
+    <script>
+        // Color palette based on "Brilliant Blues"
+        const vibrantPalette = {
+            blue: '#003f5c',
+            purple: '#7a5195',
+            pink: '#bc5090',
+            red: '#ef5675',
+            orange: '#ff764a',
+            yellow: '#ffa600',
+            lightGray: '#f0f4f8',
+            darkGray: '#333'
+        };
+
+        const chartDefaultOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: vibrantPalette.darkGray,
+                        font: {
+                            family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { 
+                        color: vibrantPalette.darkGray 
+                    },
+                    grid: {
+                        color: '#e0e0e0'
+                    }
+                },
+                x: {
+                    ticks: { 
+                        color: vibrantPalette.darkGray
+                    },
+                     grid: {
+                        display: false
+                    }
+                }
+            }
+        };
+        
+        // Function to wrap long labels, though current data doesn't require it
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+
+        new Chart(document.getElementById('reactionVsAccuracyChart'), {
+            type: 'line',
+            data: {
+                labels: ['0 мг', '100 мг', '200 мг', '300 мг', '400 мг', '500 мг'],
+                datasets: [{
+                    label: 'Скорость Реакции (мс)',
+                    data: [350, 320, 300, 285, 275, 270],
+                    borderColor: vibrantPalette.blue,
+                    backgroundColor: 'rgba(0, 63, 92, 0.1)',
+                    fill: true,
+                    tension: 0.1
+                }, {
+                    label: 'Точность (%)',
+                    data: [92, 95, 98, 98.5, 97, 95],
+                    borderColor: vibrantPalette.orange,
+                    backgroundColor: 'rgba(255, 118, 74, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: { ...chartDefaultOptions }
+        });
+
+        new Chart(document.getElementById('athleteDoseChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Время Реакции', 'Точность Внимания'],
+                datasets: [
+                    {
+                        label: '3 мг/кг',
+                        data: [8.2, 6.4],
+                        backgroundColor: vibrantPalette.purple,
+                    },
+                    {
+                        label: '6 мг/кг',
+                        data: [7.7, 4.6],
+                        backgroundColor: vibrantPalette.pink,
+                    },
+                    {
+                        label: '9 мг/кг',
+                        data: [0, 0], // Data represents no significant improvement or adverse effects
+                        backgroundColor: vibrantPalette.red,
+                    }
+                ]
+            },
+            options: { ...chartDefaultOptions,
+                indexAxis: 'y',
+                plugins: { ...chartDefaultOptions.plugins,
+                    tooltip: {
+                        ...chartDefaultOptions.plugins.tooltip,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.x !== null) {
+                                    label += context.parsed.x + '% улучшения';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                 scales: {
+                    x: {
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%'
+                            }
+                        },
+                        title: { // Added x-axis title for clarity
+                            display: true,
+                            text: 'Улучшение (%)',
+                            color: vibrantPalette.darkGray,
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    y: {
+                         title: { // Added y-axis title for clarity
+                            display: true,
+                            text: 'Когнитивная Задача',
+                            color: vibrantPalette.darkGray,
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('moodRadarChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Бодрость', 'Энергия', 'Настроение', 'Тревожность', 'Качество Сна'],
+                datasets: [{
+                    label: 'Низкая доза (<200 мг)',
+                    data: [4, 4, 4, 1, 4],
+                    borderColor: vibrantPalette.blue,
+                    backgroundColor: 'rgba(0, 63, 92, 0.2)',
+                }, {
+                    label: 'Высокая доза (>400 мг)',
+                    data: [5, 5, 2, 4, 1],
+                    borderColor: vibrantPalette.red,
+                    backgroundColor: 'rgba(239, 86, 117, 0.2)',
+                }]
+            },
+            options: { ...chartDefaultOptions,
+                 scales: {
+                    r: {
+                        angleLines: {
+                            color: '#e0e0e0'
+                        },
+                        grid: {
+                            color: '#e0e0e0'
+                        },
+                        pointLabels: {
+                            color: vibrantPalette.darkGray,
+                            font: { size: 12 }
+                        },
+                        ticks: {
+                            display: false,
+                            stepSize: 1
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 5
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('anxietyDonutChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Повышенный Риск', 'Низкий Риск'],
+                datasets: [{
+                    data: [75, 25],
+                    backgroundColor: [vibrantPalette.red, vibrantPalette.lightGray],
+                    borderColor: ['#fff']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                           color: vibrantPalette.darkGray
+                        }
+                    },
+                    tooltip: chartDefaultOptions.plugins.tooltip
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
