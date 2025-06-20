@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кофе и Нейродегенеративные Заболевания: Глубокий Анализ</title>
+    <title>Кофе и Нейропротекция: Глубокий Анализ</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
@@ -20,7 +18,7 @@
             --headline-accent: #D4AF37;
             --block-bg: #242B38;
             --card-bg: #E5DFCA;
-            --card-text: #181A1B; /* Текст для светлых карточек */
+            --card-text: #181A1B;
             --danger-accent: #8A1538;
             --text-light: #E5DFCA;
             --text-white: #FFFFFF;
@@ -35,18 +33,21 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        h1, h2, h3 {
-            color: var(--headline-accent);
+        h1, h2, h3, h4 {
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        h1, h2, h3 {
+             color: var(--headline-accent);
         }
         
         .monument-divider {
             height: 2px;
             background-color: var(--block-bg);
             border: none;
-            margin: 2rem auto;
+            margin: 3rem auto;
             max-width: 200px;
         }
         
@@ -58,8 +59,8 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .content-card h3 {
-            color: #2c3e50; /* Более темный для контраста на светлом фоне */
+        .content-card h3, .content-card h4 {
+            color: #2c3e50;
         }
         
         .accent-button {
@@ -88,7 +89,7 @@
         table {
             border-collapse: collapse;
             width: 100%;
-            min-width: 600px; /* Минимальная ширина для предотвращения сжатия */
+            min-width: 800px; /* Увеличена ширина для читаемости */
         }
 
         th, td {
@@ -102,19 +103,22 @@
             color: var(--headline-accent);
             font-weight: 700;
         }
+        .icon {
+            width: 48px;
+            height: 48px;
+            fill: var(--headline-accent);
+            margin: 0 auto 1rem;
+        }
     </style>
 </head>
 <body class="bg-[var(--main-bg)]">
 
-    <!-- Основной контейнер -->
-    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
 
-        <!-- Заголовок бренда -->
         <header class="text-center mb-12">
             <h1 class="text-3xl md:text-5xl brand-header">HORMESIS HUB</h1>
         </header>
 
-        <!-- Главный заголовок статьи -->
         <div class="text-center mb-12">
             <h2 class="text-2xl md:text-4xl font-bold mb-4">Кофе и Нейродегенеративные Заболевания</h2>
             <p class="text-lg text-gray-400">Оценка Потенциальных Защитных Механизмов</p>
@@ -122,103 +126,97 @@
         
         <hr class="monument-divider">
 
-        <!-- Раздел: Резюме -->
         <section class="mb-12">
             <h2 class="text-2xl mb-6 text-center">Резюме</h2>
             <div class="content-card p-6 md:p-8 text-base md:text-lg leading-relaxed">
-                <p>Настоящий отчет представляет собой углубленное исследование долгосрочного воздействия регулярного потребления кофе на риск развития нейродегенеративных заболеваний, таких как болезнь Альцгеймера (БА) и болезнь Паркинсона (БП). Анализ показывает, что умеренное потребление кофе, <strong>особенно несладкого</strong>, устойчиво ассоциируется со снижением риска развития этих состояний.</p>
-                <p class="mt-4">Ключевым выводом является то, что нейропротекторное действие обусловлено не только кофеином, но и сложным взаимодействием множества биоактивных соединений (хлорогеновые кислоты, полифенолы), действующих синергетически. Это подчеркивает, что целостный напиток может предложить более комплексные преимущества, чем изолированные компоненты.</p>
+                <p>Настоящий отчет представляет собой углубленное исследование долгосрочного воздействия регулярного потребления кофе на риск развития нейродегенеративных заболеваний, таких как болезнь Альцгеймера (БА) и болезнь Паркинсона (БП). Анализ показывает, что умеренное потребление кофе, <strong>особенно несладкого</strong>, устойчиво ассоциируется со снижением риска развития этих состояний. </p>
+                <p class="mt-4">Ключевым выводом является то, что нейропротекторное действие обусловлено не только кофеином, но и сложным взаимодействием множества биоактивных соединений (хлорогеновые кислоты, полифенолы), действующих синергетически.  Это подчеркивает, что целостный напиток может предложить более комплексные преимущества, чем изолированные компоненты. </p>
             </div>
         </section>
 
         <hr class="monument-divider">
-
-        <!-- Раздел: Введение -->
-        <section class="mb-12">
-            <h2 class="text-2xl mb-6 text-center">Введение: Обзор Проблемы</h2>
-            <div class="content-card p-6 md:p-8 space-y-4 leading-relaxed">
-                <p>Нейродегенеративные заболевания (НДЗ) представляют собой растущую глобальную проблему здравоохранения. Болезнь Альцгеймера поражает до 50% людей старше 80 лет, а болезнь Паркинсона характеризуется разрушением дофаминергических нейронов.</p>
-                <p>В этом контексте поиск модифицируемых факторов образа жизни, таких как диета, становится крайне актуальным. Кофе, как один из самых потребляемых напитков в мире, является сложной смесью биоактивных соединений и представляет собой высокорелевантного кандидата для исследований в области нейропротекции.</p>
-            </div>
-        </section>
         
+        <section class="mb-12">
+            <h2 class="text-2xl mb-6 text-center">Главный Вывод</h2>
+            <div class="bg-[var(--danger-accent)] p-8 rounded-lg shadow-lg text-center">
+                 <h3 class="text-2xl md:text-3xl font-black text-white uppercase">Если пить кофе для здоровья — то только несладкий</h3>
+                 <p class="text-lg text-gray-200 mt-4">Данные убедительно показывают, что добавление сахара или искусственных подсластителей может полностью нивелировать потенциальные нейропротекторные преимущества кофе. </p>
+            </div>
+        </section>
+
         <hr class="monument-divider">
 
-        <!-- Раздел: Эпидемиологические данные -->
         <section class="mb-12">
             <h2 class="text-2xl mb-6 text-center">Эпидемиологические Данные</h2>
-            <div class="space-y-8">
-                <!-- Карточка: Болезнь Альцгеймера -->
+            <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-[var(--block-bg)] p-6 md:p-8 rounded-lg shadow-lg">
                     <h3 class="text-xl font-bold mb-4 text-center">Болезнь Альцгеймера</h3>
-                    <div class="content-card p-6">
-                        <p>Большинство исследований указывают, что умеренное потребление кофе (<strong>3-5 чашек в день</strong>) может снизить риск БА. Финское исследование показало снижение риска на 65% у тех, кто потреблял умеренное количество кофе в среднем возрасте.</p>
-                        <p class="mt-4 font-bold">Важнейший фактор: тип кофе. Исследование UK Biobank выявило снижение риска только при потреблении <strong>несладкого кофе с кофеином</strong>. Эффект нивелировался при добавлении сахара или подсластителей.</p>
+                    <div class="content-card p-6 space-y-4">
+                        <p>Умеренное потребление (<strong>3-5 чашек/день</strong>) связано со снижением риска БА на 65% по сравнению с низким потреблением.  Оптимальной дозой для минимизации риска считается ~2.5 чашки в день. </p>
+                        <p class="font-bold">Критический фактор: исследования UK Biobank показывают снижение риска только для <strong>несладкого кофе</strong>.  Это касается как кофе с кофеином, так и без, подчеркивая негативное влияние подсластителей. </p>
                     </div>
                 </div>
 
-                <!-- Карточка: Болезнь Паркинсона -->
                 <div class="bg-[var(--block-bg)] p-6 md:p-8 rounded-lg shadow-lg">
                     <h3 class="text-xl font-bold mb-4 text-center">Болезнь Паркинсона</h3>
-                    <div class="content-card p-6">
-                        <p>Данные по БП еще более убедительны. Наблюдается обратная, дозозависимая связь между потреблением кофе и риском БП. Максимальная защита достигается при потреблении около <strong>3 чашек в день</strong>.</p>
-                        <p class="mt-4 font-bold">Как и в случае с БА, защитные ассоциации наблюдались для <strong>несладкого кофе</strong> (как с кофеином, так и без), что указывает на важную роль других биоактивных соединений помимо кофеина.</p>
+                    <div class="content-card p-6 space-y-4">
+                        <p>Данные по БП еще более убедительны. Наблюдается обратная, дозозависимая связь с максимальной защитой при потреблении около <strong>3 чашек в день</strong>. </p>
+                        <p class="font-bold">Как и в случае с БА, несладкий кофе (с кофеином и без) связан со снижением риска БП на 34-37% , что вновь указывает на важную роль других биоактивных соединений. </p>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <hr class="monument-divider">
 
-        <!-- Раздел: Таблица 1 -->
         <section class="mb-12">
             <h2 class="text-2xl mb-6 text-center">Сводка Эпидемиологических Данных</h2>
             <div class="content-card p-4 md:p-6 table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>Исследование</th>
-                            <th>Заболевание</th>
-                            <th>Ключевой Вывод</th>
-                            <th>Оптимальное Потребление</th>
-                            <th>Специфика</th>
+                            <th>Исследование </th>
+                            <th>Заболевание </th>
+                            <th>Ключевой Вывод </th>
+                            <th>Оптимальное Потребление </th>
+                            <th>Специфика Типа Кофе </th>
                         </tr>
                     </thead>
                     <tbody class="text-sm">
                         <tr>
-                            <td>Европейское когортное исследование</td>
-                            <td>Деменция</td>
-                            <td>4-кратное замедление снижения когнитивных функций</td>
-                            <td>3 чашки/день</td>
-                            <td>Умеренное</td>
+                            <td>Европейское когортное исследование </td>
+                            <td>Деменция </td>
+                            <td>4-кратное замедление снижения когнитивных функций </td>
+                            <td>3 чашки/день </td>
+                            <td>Умеренное потребление </td>
                         </tr>
                         <tr>
-                            <td>Финское исследование (21 год)</td>
-                            <td>Деменция</td>
-                            <td>Снижение риска на 65%</td>
-                            <td>3-5 чашек/день</td>
-                            <td>В среднем возрасте</td>
+                            <td>Финское исследование (21 год) </td>
+                            <td>Деменция </td>
+                            <td>Снижение риска на 65% </td>
+                            <td>3-5 чашек/день </td>
+                            <td>В среднем возрасте </td>
                         </tr>
                         <tr>
-                            <td>UK Biobank (2024 г.)</td>
-                            <td>БАРД</td>
-                            <td>Снижение риска (HR 0,75)</td>
-                            <td>≥3 чашек/день</td>
-                            <td>Несладкий, с кофеином</td>
+                            <td>UK Biobank (2024 г.) </td>
+                            <td>БАРД/БА/БП </td>
+                            <td>Снижение риска (HR 0.71-0.75) </td>
+                            <td>≥3 чашек/день </td>
+                            <td>Несладкий, с кофеином и без </td>
+                        </tr>
+                        <tr>
+                            <td>Мета-анализ (13 исследований) </td>
+                            <td>БП </td>
+                            <td>Максимальная защита </td>
+                            <td>~3 чашки/день </td>
+                            <td>Кофеинсодержащий </td>
                         </tr>
                          <tr>
-                            <td>UK Biobank (2024 г.)</td>
-                            <td>БП</td>
-                            <td>Снижение риска (HR 0,71)</td>
-                            <td>≥3 чашек/день</td>
-                            <td>Несладкий, с кофеином</td>
-                        </tr>
-                        <tr>
-                            <td>Мета-анализ (13 исследований)</td>
-                            <td>БП</td>
-                            <td>Максимальная защита</td>
-                            <td>~3 чашки/день</td>
-                            <td>Кофеинсодержащий</td>
+                            <td>Менделевская рандомизация </td>
+                            <td>БА </td>
+                            <td>Предполагаемое снижение риска (p=0.056) </td>
+                            <td>Высокий уровень кофеина в плазме </td>
+                            <td>Генетически предсказанный </td>
                         </tr>
                     </tbody>
                 </table>
@@ -227,65 +225,69 @@
 
         <hr class="monument-divider">
         
-        <!-- Раздел: Биохимические механизмы -->
         <section class="mb-12">
-            <h2 class="text-2xl mb-6 text-center">Биохимические Механизмы Нейропротекции</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="content-card p-6">
-                    <h3 class="font-bold text-lg mb-2">Роль Кофеина</h3>
-                    <p>Основной эффект — антагонизм аденозиновых рецепторов A2A. Это усиливает синаптическую пластичность, запускает сигнальный путь BDNF (нейротрофический фактор мозга) и увеличивает выживаемость нейронов.</p>
+            <h2 class="text-2xl mb-6 text-center">Многоуровневая Защита: Как это работает</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="content-card p-6 text-center">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+                    <h4 class="font-bold text-lg mb-2">Антагонизм A2A-рецепторов</h4>
+                    <p class="text-sm">Кофеин блокирует аденозиновые рецепторы, усиливая синаптическую пластичность, выработку BDNF (фактор роста мозга) и выживаемость нейронов. </p>
                 </div>
-                <div class="content-card p-6">
-                    <h3 class="font-bold text-lg mb-2">Другие Биоактивные Соединения</h3>
-                    <p><strong>Хлорогеновые кислоты</strong> и <strong>полифенолы</strong> обладают мощными антиоксидантными и противовоспалительными свойствами. <strong>Тригонеллин</strong> и <strong>кверцетин</strong> дополнительно защищают нейроны и ингибируют агрегацию аномальных белков.</p>
+                <div class="content-card p-6 text-center">
+                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <h4 class="font-bold text-lg mb-2">Антиоксидантная Мощь</h4>
+                    <p class="text-sm">Хлорогеновые кислоты, полифенолы и тригонеллин нейтрализуют окислительный стресс и борются с воспалением — ключевыми факторами нейродегенерации. </p>
                 </div>
-                <div class="content-card p-6 md:col-span-2">
-                    <h3 class="font-bold text-lg mb-2 text-center">Комплексное Воздействие</h3>
-                     <p>Кофе модулирует патологии амилоид-бета (БА) и альфа-синуклеина (БП), борется с окислительным стрессом и воспалением, а также положительно влияет на ось «кишечник-мозг», изменяя состав микробиоты.</p>
+                 <div class="content-card p-6 text-center">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                    <h4 class="font-bold text-lg mb-2">Борьба с Агрегацией Белков</h4>
+                    <p class="text-sm">Компоненты кофе, такие как кверцетин и кемпферол, ингибируют образование бляшек β-амилоида (БА) и агрегатов α-синуклеина (БП). </p>
                 </div>
             </div>
         </section>
-        
+
         <hr class="monument-divider">
 
-        <!-- Раздел: Выводы и Рекомендации -->
         <section class="mb-12">
-            <h2 class="text-2xl mb-6 text-center">Выводы и Рекомендации</h2>
-            <div class="bg-[var(--block-bg)] p-6 md:p-8 rounded-lg shadow-lg space-y-4">
-                 <p class="text-lg">Регулярное, умеренное потребление <strong>несладкого кофе</strong> последовательно ассоциируется со снижением риска развития БА и БП.</p>
-                 <p class="text-lg">Защитные механизмы многофакторны и включают как эффекты кофеина, так и других биоактивных соединений.</p>
-                 <p class="text-lg font-bold text-[var(--headline-accent)]">Ключевая рекомендация: для потенциальной пользы для здоровья кофе следует употреблять несладким. Это простой и действенный совет, согласующийся с глобальными целями по снижению потребления сахара.</p>
-                 <p class="text-lg">Потребление кофе должно рассматриваться в контексте здорового образа жизни в целом, а не как самостоятельное "волшебное средство".</p>
+             <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-[var(--block-bg)] p-6 md:p-8 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-center">Генетика и Пол</h3>
+                    <div class="content-card p-6 space-y-4">
+                        <p>Эффект кофеина не универсален. Гены, отвечающие за его метаболизм (CYP1A2) и рецепторы (ADORA2A), определяют индивидуальную реакцию. </p>
+                        <p class="mt-2">У женщин эффект может меняться в зависимости от гормональной терапии, что указывает на сложную взаимосвязь с эндокринной системой. </p>
+                    </div>
+                </div>
+                <div class="bg-[var(--block-bg)] p-6 md:p-8 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-center">Ось «Кишечник-Мозг»</h3>
+                    <div class="content-card p-6 space-y-4">
+                        <p>Кофе положительно влияет на микробиоту кишечника, увеличивая количество полезных бактерий (Bifidobacterium). </p>
+                        <p class="mt-2">Это снижает системное воспаление, идущее из кишечника, что является передовым направлением в понимании профилактики НДЗ. </p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <hr class="monument-divider">
+
+        <section class="mb-12">
+            <h2 class="text-2xl mb-6 text-center">Научная Объективность: Ограничения</h2>
+            <div class="content-card p-6 md:p-8 text-base md:text-lg leading-relaxed">
+                <p>Важно понимать, что большинство текущих исследований являются <strong>наблюдательными</strong>.  Они показывают сильную ассоциацию, но не доказывают прямую причинно-следственную связь. Нельзя исключить "обратную причинность" (когда ранние стадии болезни меняют привычки, а не наоборот). </p>
+                <p class="mt-4">Для окончательных выводов необходимы долгосрочные рандомизированные контролируемые испытания (РКИ), которые являются "золотым стандартом" в медицине. </p>
             </div>
         </section>
 
-        <!-- Кнопка и список источников -->
         <section class="text-center mb-12">
              <button id="toggleSourcesBtn" class="accent-button font-bold py-3 px-8 rounded-lg uppercase tracking-wider">
-                Показать / Скрыть источники
-            </button>
-            <div id="sourcesList" class="hidden mt-8 text-left bg-[var(--block-bg)] p-6 rounded-lg">
-                <h3 class="text-xl mb-4 text-center">Источники</h3>
-                <ul class="list-decimal list-inside text-sm text-gray-400 space-y-2">
-                    <li>Unsweetened coffee associated with reduced risk of Alzheimer's and Parkinson's diseases, study finds - PsyPost</li>
-                    <li>Associations between different coffee types, neurodegenerative ... - PubMed</li>
-                    <li>Study Finds Coffee Linked to Lower Risk of Dementia, But There's a Catch - ScienceAlert</li>
-                    <li>of the neuroprotective effects of coffee. | Download Scientific Diagram - ResearchGate</li>
-                    <li>Coffee and Alzheimer's Disease: Reviewing the Neuroprotective ... - apcz.umk.pl</li>
-                    <li>Neuroprotective and Anti-inflammatory Properties of a Coffee Component in the MPTP Model of Parkinson's Disease - PubMed Central</li>
-                    <li>Bioactive compounds in coffee and tobacco may combat Parkinson's ... - News-Medical.net</li>
-                    <li>Coffee and Alzheimer's disease - Coffee & Health</li>
-                    <li>Can coffee consumption lower the risk of Alzheimer's disease and ... - PMC</li>
-                    <li>Coffee & Parkinson's Disease - Coffee & Health</li>
-                    <li>Caffeine and Alzheimer's disease: Moderate intake may slow cognitive decline - PsyPost</li>
-                    <li>Plasma Caffeine Levels and Risk of Alzheimer's Disease and ... - MDPI</li>
-                    <li>Caffeine and Parkinson's Disease: Multiple Benefits and ... - Frontiers</li>
-                    <li>Caffeine for Prevention of Alzheimer's Disease: Is the A2A Adenosine Receptor Its Target? - ResearchGate</li>
-                </ul>
-            </div>
+                 Показать / Скрыть источники
+             </button>
+             <div id="sourcesList" class="hidden mt-8 text-left bg-[var(--block-bg)] p-6 rounded-lg">
+                 <h3 class="text-xl mb-4 text-center">Источники</h3>
+                 <ul class="list-decimal list-inside text-sm text-gray-400 space-y-2">
+                    </ul>
+             </div>
         </section>
 
-        <!-- Подвал -->
         <footer class="text-center mt-20 pt-8 border-t-2 border-[var(--block-bg)]">
             <p class="text-lg text-[var(--headline-accent)] font-bold">От автора YASHKA LEGEND</p>
             <p class="text-sm text-gray-500 mt-2">© 2025 HORMESIS HUB. Все права защищены.</p>
@@ -295,10 +297,39 @@
     <script>
         // Скрипт для переключения видимости источников
         const toggleBtn = document.getElementById('toggleSourcesBtn');
-        const sourcesList = document.getElementById('sourcesList');
+        const sourcesListContainer = document.getElementById('sourcesList');
+        const sourcesUl = sourcesListContainer.querySelector('ul');
+
+        const sources = [
+            "Unsweetened coffee associated with reduced risk of Alzheimer's and Parkinson's diseases, study finds - PsyPost",
+            "Associations between different coffee types, neurodegenerative ... - PubMed",
+            "Study Finds Coffee Linked to Lower Risk of Dementia, But There's a Catch - ScienceAlert",
+            "of the neuroprotective effects of coffee. | Download Scientific Diagram - ResearchGate",
+            "Coffee and Alzheimer's Disease: Reviewing the Neuroprotective ... - apcz.umk.pl",
+            "Neuroprotective and Anti-inflammatory Properties of a Coffee Component in the MPTP Model of Parkinson's Disease - PubMed Central",
+            "Bioactive compounds in coffee and tobacco may combat Parkinson's ... - News-Medical.net",
+            "Evaluating the Neuroprotective Potential of Caffeinated Coffee... - bohrium.com",
+            "Coffee and Alzheimer's disease - Coffee & Health",
+            "Can coffee consumption lower the risk of Alzheimer's disease and ... - PMC",
+            "Coffee & Parkinson's Disease - Coffee & Health",
+            "Caffeine and Alzheimer's disease: Moderate intake may slow cognitive decline - PsyPost",
+            "Association Between Caffeine Intake and Alzheimer's Disease Progression: A Systematic Review - PMC",
+            "Moderate coffee or tea consumption decreased the risk of cognitive disorders... - PubMed",
+            "9 Reasons Why (the Right Amount of) Coffee Is Good for You - Hopkins Medicine",
+            "Unsweetened coffee associated with reduced risk of Alzheimer's and Parkinson's diseases, study finds - Reddit",
+            "Plasma Caffeine Levels and Risk of Alzheimer's Disease and ... - MDPI",
+            "Caffeine and Parkinson's Disease: Multiple Benefits and ... - Frontiers",
+            "Caffeine for Prevention of Alzheimer's Disease: Is the A2A Adenosine Receptor Its Target? - ResearchGate/PMC"
+        ];
+        
+        sources.forEach(source => {
+            const li = document.createElement('li');
+            li.textContent = source;
+            sourcesUl.appendChild(li);
+        });
 
         toggleBtn.addEventListener('click', () => {
-            sourcesList.classList.toggle('hidden');
+            sourcesListContainer.classList.toggle('hidden');
         });
     </script>
 </body>
