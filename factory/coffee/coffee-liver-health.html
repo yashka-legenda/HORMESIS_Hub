@@ -1,1 +1,320 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инфографика: Кофе и Здоровье Печени</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .kpi-value {
+            color: #CA6702;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #0A9396, #005F73);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
 
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center my-8 md:my-16">
+            <h1 class="text-4xl md:text-6xl font-black gradient-text">Кофе: Неожиданный Защитник Вашей Печени</h1>
+            <p class="mt-4 text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">Научные данные убедительно доказывают, что регулярное употребление кофе значительно снижает риск хронических заболеваний печени.</p>
+        </header>
+        
+        <main>
+            <section id="kpi" class="my-12 md:my-20">
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center transform transition-all duration-500 hover:scale-105">
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-700 mb-2">Ключевой факт: Потребление кофе связано со снижением риска развития рака печени на</h2>
+                    <p class="text-7xl md:text-9xl font-black kpi-value">49%</p>
+                    <p class="mt-4 text-slate-500">Это один из наиболее выраженных защитных эффектов, подтвержденный многочисленными мета-анализами. При высоком потреблении риск может снижаться еще больше.</p>
+                </div>
+            </section>
+
+            <section id="evidence" class="my-12 md:my-20">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Кофе против болезней печени: Что говорят цифры?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center">
+                        <h3 class="text-xl font-bold mb-4 text-[#005F73]">Фиброз и НАЖБП</h3>
+                        <div class="chart-container w-full h-64">
+                            <canvas id="fibrosisChart"></canvas>
+                        </div>
+                        <p class="mt-4 text-slate-600">Регулярное употребление кофе ассоциируется со снижением риска развития фиброза печени на <strong>27%</strong> у пациентов с различными хроническими заболеваниями печени, включая неалкогольную жировую болезнь печени (НАЖБП).</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center">
+                        <h3 class="text-xl font-bold mb-4 text-[#005F73]">Цирроз печени</h3>
+                        <div class="chart-container w-full h-64">
+                            <canvas id="cirrhosisChart"></canvas>
+                        </div>
+                        <p class="mt-4 text-slate-600">Потребители кофе имеют на <strong>39%</strong> меньший риск развития цирроза — конечной стадии многих заболеваний печени. Эффект особенно заметен при высоком потреблении (≥2 чашек в день).</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center md:col-span-2 lg:col-span-1">
+                        <h3 class="text-xl font-bold mb-4 text-[#005F73]">Рак печени (ГЦК)</h3>
+                         <div class="chart-container w-full h-64">
+                            <canvas id="hccBarChart"></canvas>
+                        </div>
+                        <p class="mt-4 text-slate-600">Потребление кофе демонстрирует мощный защитный эффект против гепатоцеллюлярной карциномы (ГЦК), наиболее распространенного типа рака печени. Высокое потребление снижает риск еще значительнее.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="mechanism" class="my-12 md:my-20">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Как это работает? Наука в кофейной чашке</h2>
+                <div class="max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-xl">
+                    <div class="flex flex-col md:flex-row items-center justify-center text-center mb-8">
+                        <div class="p-4 rounded-full bg-[#E9D8A6] text-[#CA6702] text-2xl font-bold">☕</div>
+                        <div class="text-2xl font-bold mx-4 text-slate-700">Кофе</div>
+                    </div>
+                    <div class="text-5xl text-center text-slate-300">▼</div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-8 text-center">
+                        <div class="border-2 border-[#0A9396] rounded-lg p-4">
+                            <h4 class="font-bold text-lg text-[#005F73]">Кофеин</h4>
+                            <p class="text-slate-600">Блокирует аденозиновые рецепторы, замедляя активацию клеток, ответственных за рубцевание (фиброз) печени.</p>
+                        </div>
+                        <div class="border-2 border-[#EE9B00] rounded-lg p-4">
+                            <h4 class="font-bold text-lg text-[#CA6702]">Хлорогеновые кислоты</h4>
+                            <p class="text-slate-600">Мощные антиоксиданты, которые борются с окислительным стрессом и воспалением, ключевыми факторами повреждения печени.</p>
+                        </div>
+                    </div>
+                     <div class="text-5xl text-center text-slate-300">▼</div>
+                     <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-center">
+                        <div class="bg-teal-50 p-4 rounded-lg">
+                           <h5 class="font-semibold text-teal-800">Антифибротический эффект</h5>
+                           <p class="text-sm text-teal-700">Замедление рубцевания тканей.</p>
+                        </div>
+                         <div class="bg-amber-50 p-4 rounded-lg">
+                           <h5 class="font-semibold text-amber-800">Антиоксидантное действие</h5>
+                           <p class="text-sm text-amber-700">Защита клеток от повреждений.</p>
+                        </div>
+                         <div class="bg-cyan-50 p-4 rounded-lg">
+                           <h5 class="font-semibold text-cyan-800">Противовоспалительный эффект</h5>
+                           <p class="text-sm text-cyan-700">Снижение хронического воспаления.</p>
+                        </div>
+                         <div class="bg-blue-50 p-4 rounded-lg sm:col-span-2 lg:col-span-3">
+                           <h5 class="font-semibold text-blue-800">Метаболическая модуляция</h5>
+                           <p class="text-sm text-blue-700">Улучшение обмена глюкозы и жиров, что снижает накопление жира в печени.</p>
+                        </div>
+                     </div>
+                </div>
+            </section>
+            
+            <section id="dose" class="my-12 md:my-20">
+                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Больше кофе — больше пользы?</h2>
+                 <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                    <div class="chart-container mx-auto" style="max-width: 800px; height: 350px;">
+                        <canvas id="doseResponseChart"></canvas>
+                    </div>
+                     <p class="mt-6 text-center text-slate-600 max-w-3xl mx-auto">Исследования показывают дозозависимый эффект: каждая дополнительная чашка кофе в день последовательно снижает риск развития рака печени (ГЦК) примерно на 15-25%. Умеренное потребление (3-4 чашки) считается оптимальным балансом между пользой и безопасностью.</p>
+                 </div>
+            </section>
+            
+            <section id="experts" class="my-12 md:my-20">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Что говорят эксперты?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-[#005F73] text-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="font-bold text-xl border-b-2 border-[#94D2BD] pb-2 mb-4">EASL (Европейская ассоциация по изучению печени)</h3>
+                        <blockquote class="text-lg italic">"Потребление кофе следует поощрять у пациентов с хроническими заболеваниями печени для снижения риска развития ГЦК (рака печени)."</blockquote>
+                        <p class="text-right mt-2 text-teal-200">- Клинические рекомендации по ведению ГЦК</p>
+                    </div>
+                    <div class="bg-slate-700 text-white rounded-2xl p-8 shadow-lg">
+                         <h3 class="font-bold text-xl border-b-2 border-slate-500 pb-2 mb-4">AASLD (Американская ассоциация по изучению заболеваний печени)</h3>
+                        <blockquote class="text-lg italic">"3 чашки кофе в день = менее прогрессирующее заболевание печени у пациентов с НАЖБП, страдающих избыточным весом/ожирением."</blockquote>
+                         <p class="text-right mt-2 text-slate-400">- Практические рекомендации по НАЖБП</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="text-center mt-16 pb-8">
+             <p class="text-slate-500">Данная инфографика основана на обобщенных данных научных мета-анализов и клинических руководств. Информация не является медицинской рекомендацией. Проконсультируйтесь с врачом.</p>
+        </footer>
+    </div>
+
+    <script>
+        function wrapText(text, maxLength) {
+            if (typeof text !== 'string' || text.length <= maxLength) {
+                return text;
+            }
+            const words = text.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        }
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const chartDefaultOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#475569',
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    backgroundColor: '#0f172a',
+                    titleFont: { size: 16 },
+                    bodyFont: { size: 14 },
+                    padding: 12,
+                    cornerRadius: 8
+                }
+            }
+        };
+        
+        const fibrosisData = {
+            labels: ['Риск фиброза', 'Остаточный риск'],
+            datasets: [{
+                label: 'Снижение риска',
+                data: [27, 73],
+                backgroundColor: ['#0A9396', '#e2e8f0'],
+                borderColor: ['#0A9396', '#e2e8f0'],
+                borderWidth: 1,
+                hoverOffset: 4
+            }]
+        };
+        new Chart(document.getElementById('fibrosisChart'), {
+            type: 'doughnut',
+            data: fibrosisData,
+            options: { ...chartDefaultOptions }
+        });
+
+        const cirrhosisData = {
+            labels: ['Снижение риска', 'Остаточный риск'],
+            datasets: [{
+                label: 'Снижение риска',
+                data: [39, 61],
+                backgroundColor: ['#EE9B00', '#e2e8f0'],
+                borderColor: ['#EE9B00', '#e2e8f0'],
+                borderWidth: 1,
+                hoverOffset: 4
+            }]
+        };
+        new Chart(document.getElementById('cirrhosisChart'), {
+            type: 'doughnut',
+            data: cirrhosisData,
+            options: { ...chartDefaultOptions }
+        });
+
+        const hccBarData = {
+            labels: ['Не пьющие', wrapText('Обычные потребители', 16), wrapText('Высокое потребление', 16)],
+            datasets: [{
+                label: 'Относительный риск ГЦК',
+                data: [1.0, 0.51, 0.21],
+                backgroundColor: ['#AE2012', '#0A9396', '#005F73'],
+                borderRadius: 8,
+                barThickness: 30,
+            }]
+        };
+        new Chart(document.getElementById('hccBarChart'), {
+            type: 'bar',
+            data: hccBarData,
+            options: {
+                ...chartDefaultOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Относительный риск', color: '#475569' },
+                         ticks: { color: '#475569' }
+                    },
+                    x: {
+                        ticks: { color: '#475569' }
+                    }
+                },
+                plugins: { ...chartDefaultOptions.plugins, legend: { display: false } }
+            }
+        });
+        
+        const doseResponseData = {
+            labels: ['0 чашек', '1 чашка', '2 чашки', '3 чашки', '4 чашки', '5 чашек'],
+            datasets: [{
+                label: 'Снижение риска ГЦК (%)',
+                data: [0, 15, 30, 45, 60, 75],
+                fill: true,
+                backgroundColor: 'rgba(10, 147, 150, 0.2)',
+                borderColor: '#0A9396',
+                tension: 0.4,
+                pointBackgroundColor: '#005F73',
+                pointRadius: 5,
+                pointHoverRadius: 8
+            }]
+        };
+        new Chart(document.getElementById('doseResponseChart'), {
+            type: 'line',
+            data: doseResponseData,
+            options: {
+                ...chartDefaultOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 80,
+                        title: { display: true, text: 'Приблизительное снижение риска (%)', color: '#475569' },
+                        ticks: {
+                            callback: function(value) { return value + '%' },
+                            color: '#475569'
+                        }
+                    },
+                    x: {
+                        title: { display: true, text: 'Количество чашек кофе в день', color: '#475569' },
+                        ticks: { color: '#475569' }
+                    }
+                },
+                plugins: { ...chartDefaultOptions.plugins, legend: { display: false } }
+            }
+        });
+
+    </script>
+</body>
+</html>
