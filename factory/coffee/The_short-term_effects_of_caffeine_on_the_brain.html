@@ -3,259 +3,442 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Инфографика: Кофе и Нейропротекция</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Кофеин: Глубокий Анализ Психостимулятора</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+        /* * ПАЛИТРА "МОНУМЕНТАЛЬНАЯ КЛАССИКА"
+         * main_bg: #181A1B          // глубокий графитово-чёрный, главный фон
+         * headline_accent: #D4AF37  // пыльно-золотой, только для заголовков и акцентов
+         * block_bg: #242B38         // тёмный серо-синий, блоки, разделители
+         * card_bg: #E5DFCA          // холодный каменно-бежевый, карточки/фоны текста
+         * danger_accent: #8A1538    // глубокий бордовый, для кнопок и редких деталей
+         * text_light: #E5DFCA       // основной текст на тёмном фоне
+         * text_dark: #181A1B         // основной текст на светлом фоне
+         */
+        
+        /* --- ОБЩИЕ СТИЛИ И СБРОС --- */
+        :root {
+            --main-bg: #181A1B;
+            --headline-accent: #D4AF37;
+            --block-bg: #242B38;
+            --card-bg: #E5DFCA;
+            --danger-accent: #8A1538;
+            --text-light: #E5DFCA;
+            --text-dark: #242B38;
+            --text-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+            background-color: var(--main-bg);
             font-family: 'Inter', sans-serif;
-            background-color: #181A1B;
-            color: #E5DFCA;
+            color: var(--text-light);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 350px;
-            max-height: 400px;
+
+        /* --- КОНТЕЙНЕР И МАКЕТ --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
         }
-        @media (max-width: 768px) {
-            .chart-container {
-                height: 300px;
-            }
+
+        /* --- ВЕРХНИЙ КОЛОНТИТУЛ (HEADER) --- */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 5rem;
+            text-align: center;
         }
-        .text-shadow-gold {
-            text-shadow: 1px 1px 3px rgba(212, 175, 55, 0.2);
+
+        .header-title {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--headline-accent);
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
+        
+        /* --- ОСНОВНЫЕ ЗАГОЛОВКИ (H1, H2, H3) --- */
+        h1, h2, h3 {
+            font-weight: 900;
+            line-height: 1.3;
+            color: var(--headline-accent);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-top: 5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--block-bg);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+        
+        /* --- КАРТОЧКИ С КОНТЕНТОМ (КАМЕННЫЕ ПЛИТЫ) --- */
         .card {
-            background-color: #E5DFCA;
-            color: #242B38;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            box-shadow: 0 8px 12px -3px rgba(0, 0, 0, 0.3), 0 3px 6px -2px rgba(0, 0, 0, 0.2);
-            border: 1px solid #242B38;
+            background-color: var(--card-bg);
+            color: var(--text-dark);
+            padding: 2.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
+
+        .card p {
+            margin-bottom: 1em;
+        }
+        
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .card ul {
+            padding-left: 20px;
+            margin-top: 1rem;
+        }
+        
+        .card li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- БЛОК-ЦИТАТА (АНАЛИТИЧЕСКИЕ ВЫВОДЫ) --- */
+        .insight {
+            margin: 2.5rem 0;
+            padding: 2rem;
+            background-color: rgba(36, 43, 56, 0.5);
+            border-left: 5px solid var(--headline-accent);
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .insight p {
+            font-style: italic;
+            color: var(--text-white);
+            font-size: 1.1rem;
+        }
+        
+        /* --- ТАБЛИЦЫ --- */
+        .table-wrapper {
+            overflow-x: auto; /* Для мобильной прокрутки */
+            margin-top: 2rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--card-bg);
+            color: var(--text-dark);
+            border-radius: 8px;
+            overflow: hidden; /* Для скругления углов */
+        }
+        
+        th, td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid #c8c2b3; /* Чуть темнее фона карточки */
+        }
+        
+        thead th {
+            background-color: var(--danger-accent);
+            color: var(--text-white);
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: rgba(36, 43, 56, 0.05);
+        }
+
+        /* --- СПИСОК ИСТОЧНИКОВ --- */
+        .sources-section {
+            margin-top: 5rem;
+        }
+        .sources-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.8rem;
+        }
+        .sources-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .sources-list li::before {
+            content: "•";
+            color: var(--headline-accent);
+            font-weight: bold;
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .sources-list a {
+            color: var(--text-light);
+            text-decoration: none;
+            word-break: break-all;
+        }
+        .sources-list a:hover {
+            text-decoration: underline;
+            color: var(--text-white);
+        }
+        
+        /* --- НИЖНИЙ КОЛОНТИТУЛ (FOOTER) --- */
+        .footer {
+            text-align: center;
+            margin-top: 6rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--headline-accent);
+            font-size: 1rem;
+            color: var(--headline-accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- АДАПТИВНОСТЬ --- */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            .header-title { font-size: 1.5rem; }
+            .container { padding: 2rem 0.5rem; }
+            .card { padding: 1.5rem; }
+            .insight { padding: 1.5rem; }
+        }
+
     </style>
 </head>
-<body class="font-inter">
+<body>
 
-    <div class="container mx-auto p-4 md:p-8">
+    <div class="container">
 
-        <header class="text-center my-8 md:my-16">
-            <div class="flex flex-col items-center justify-center space-y-2 mb-6">
-                <h2 class="text-3xl md:text-4xl font-extrabold tracking-widest uppercase" style="color: #D4AF37;">HORMESIS HUB</h2>
-            </div>
-            <h1 class="text-4xl md:text-6xl font-black uppercase text-shadow-gold leading-tight" style="color: #D4AF37;">Кофе против Нейродегенерации</h1>
-            <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto" style="color: #E5DFCA;">Как ежедневная чашка кофе, подобно дисциплине воина, может выковать защиту для вашего мозга</p>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-title">Hormesis Hub</div>
         </header>
 
-        <section class="my-16 md:my-20">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center">
-                <div class="card p-6">
-                    <h2 class="text-5xl md:text-6xl font-black" style="color: #242B38;">до 65%</h2>
-                    <p class="mt-2 font-bold uppercase" style="color: #242B38;">Снижение риска деменции</p>
-                    <p class="mt-1 text-sm" style="color: #242B38;">при 3-5 чашках несладкого кофе в день.</p>
-                </div>
-                <div class="card p-6">
-                    <h2 class="text-5xl md:text-6xl font-black" style="color: #242B38;">3 чашки</h2>
-                    <p class="mt-2 font-bold uppercase" style="color: #242B38;">Оптимальная доза</p>
-                    <p class="mt-1 text-sm" style="color: #242B38;">для максимальной защиты от болезни Паркинсона.</p>
-                </div>
-                <div class="card p-6">
-                    <h2 class="text-5xl md:text-6xl font-black" style="color: #242B38;">4x</h2>
-                    <p class="mt-2 font-bold uppercase" style="color: #242B38;">Замедление упадка</p>
-                    <p class="mt-1 text-sm" style="color: #242B38;">когнитивных функций при умеренном потреблении.</p>
-                </div>
-            </div>
-        </section>
+        <main>
 
-        <section class="card my-16 md:my-20 p-6 md:p-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 uppercase" style="color: #242B38;">Потребление и Риск: Данные Исследований</h2>
-            <p class="text-center text-base md:text-lg mb-8 max-w-3xl mx-auto" style="color: #242B38;">
-                Анализ крупных исследований показывает обратную связь между потреблением несладкого кофе и риском нейродегенерации. <span class="font-bold" style="color: #8A1538;">Оптимальная доза в 2.5-5 чашек обеспечивает максимальное снижение риска.</span> График иллюстрирует эту зависимость.
-            </p>
-            <div class="chart-container">
-                <canvas id="riskReductionChart"></canvas>
-            </div>
-        </section>
+            <h1>Краткосрочное Влияние Кофеина: Глубокий Анализ</h1>
 
-        <section class="my-16 md:my-20">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 uppercase" style="color: #D4AF37;">Дисциплина вкуса: без сахара</h2>
-            <p class="text-center text-base md:text-lg mb-8 max-w-3xl mx-auto" style="color: #E5DFCA;">
-                Защитные свойства кофе проявляются лишь в его чистой форме. Сахар и подсластители нивелируют пользу, нарушая спартанскую строгость напитка.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                <div class="p-6 md:p-8 text-center rounded-md border-2 shadow-lg" style="background-color: #242B38; border-color: #D4AF37;">
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 uppercase" style="color: #D4AF37;">Несладкий Кофе</h3>
-                    <p class="text-5xl md:text-6xl mb-4" style="color: #D4AF37;">&#10004;</p>
-                    <ul class="text-sm md:text-lg list-none p-0" style="color: #E5DFCA;">
-                        <li>Снижает риск БА и БП</li>
-                        <li>Уменьшает смертность от НДЗ</li>
-                        <li>Польза есть даже у кофе без кофеина</li>
-                    </ul>
+            <!-- Section 1: Introduction -->
+            <section id="introduction">
+                <h2>1. Введение: Сущность Психостимулятора</h2>
+                <div class="card">
+                    <h3>Обзор и свойства</h3>
+                    <p>Кофеин, ксантиновый алкалоид, является самым распространенным психоактивным стимулятором в мире. Он содержится более чем в 60 растениях, включая кофейные зерна, чайные листья и какао-бобы. После приема он быстро абсорбируется, достигая пика концентрации в крови через 30-60 минут, а его эффекты длятся несколько часов.</p>
+                    <p>Быстрая абсорбция и психоактивная природа объясняют его глобальную популярность как средства для борьбы с усталостью и повышения бдительности. Его повсеместное распространение указывает на фундаментальное стремление человека к улучшению когнитивных функций, и кофеин предлагает доступный способ достижения этой цели.</p>
                 </div>
-                <div class="p-6 md:p-8 text-center rounded-md border-2 shadow-lg" style="background-color: #242B38; border-color: #8A1538;">
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 uppercase" style="color: #D4AF37;">Кофе с сахаром</h3>
-                    <p class="text-5xl md:text-6xl mb-4" style="color: #8A1538;">&#10006;</p>
-                    <ul class="text-sm md:text-lg list-none p-0" style="color: #E5DFCA;">
-                        <li>Защитные ассоциации отсутствуют</li>
-                        <li>Потенциальные преимущества теряются</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="card my-16 md:my-20 p-6 md:p-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 uppercase" style="color: #242B38;">Арсенал Защиты: Как это работает</h2>
-             <p class="text-center text-base md:text-lg mb-10 max-w-3xl mx-auto" style="color: #242B38;">
-                Защитный эффект кофе — это не магия, а каскад биохимических реакций. Кофе действует сразу по нескольким фронтам, создавая многоуровневый барьер против патологий мозга.
-            </p>
-            <div class="flex flex-col items-center space-y-4">
-                <div class="p-4 rounded-lg shadow-lg" style="background-color: #242B38;">
-                    <p class="text-xl font-bold text-center uppercase" style="color: #FFFFFF;">☕ Потребление кофе</p>
+            <!-- Section 2: Mechanisms -->
+            <section id="mechanisms">
+                <h2>2. Механизмы Действия</h2>
+                <div class="card">
+                    <h3>Антагонизм аденозиновых рецепторов</h3>
+                    <p>Основной механизм действия кофеина — блокировка аденозиновых рецепторов (A1 и A2A). Аденозин — это нейротрансмиттер, способствующий расслаблению и сну. Блокируя его, кофеин повышает общую нейронную активность.</p>
+                    <p>Эта блокада ведет к увеличению высвобождения других нейротрансмиттеров, таких как дофамин (связан с вознаграждением и мотивацией) и норадреналин (связан с возбуждением и вниманием). Это и объясняет стимулирующие эффекты кофеина.</p>
+                    <h3>Дополнительные механизмы</h3>
+                    <p>Кофеин также ингибирует фермент фосфодиэстеразу (ФДЭ), что увеличивает внутриклеточную энергию (цАМФ). Кроме того, он обладает вазоконстрикторными свойствами, сужая сосуды и снижая мозговой кровоток (CBF), что важно учитывать в нейровизуализационных исследованиях.</p>
                 </div>
-                <div class="text-4xl" style="color: #8A1538;">↓</div>
-                <div class="p-4 rounded-lg shadow-lg" style="background-color: #242B38;">
-                    <p class="text-xl font-bold text-center uppercase" style="color: #FFFFFF;">Биоактивные соединения</p>
-                    <p class="text-sm text-center" style="color: #E5DFCA;">(Кофеин, полифенолы, тригонеллин и др.)</p>
+                <div class="insight">
+                    <p><strong>Аналитический вывод:</strong> Двойное действие кофеина (нейростимулятор и вазоконстриктор) создает сложную физиологическую картину. Усиление дофамина и норадреналина напрямую объясняет поведенческие изменения — от повышенной концентрации до улучшения настроения. Это прямая причинно-следственная связь от молекулярного уровня к повседневному опыту.</p>
                 </div>
-                <div class="text-4xl" style="color: #8A1538;">↓</div>
-                <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
-                    <div class="bg-[#E5DFCA] p-4 rounded-lg border" style="border-color: #242B38;">
-                        <h4 class="font-bold text-lg uppercase" style="color: #242B38;">Антиоксидант</h4>
-                        <p class="text-xs" style="color: #242B38;">Нейтрализация окислительного стресса</p>
-                    </div>
-                    <div class="bg-[#E5DFCA] p-4 rounded-lg border" style="border-color: #242B38;">
-                        <h4 class="font-bold text-lg uppercase" style="color: #242B38;">Противовоспаление</h4>
-                        <p class="text-xs" style="color: #242B38;">Подавление нейровоспаления</p>
-                    </div>
-                    <div class="bg-[#E5DFCA] p-4 rounded-lg border" style="border-color: #242B38;">
-                        <h4 class="font-bold text-lg uppercase" style="color: #242B38;">Блокада A2A</h4>
-                        <p class="text-xs" style="color: #242B38;">Усиление синаптической пластичности</p>
-                    </div>
-                    <div class="bg-[#E5DFCA] p-4 rounded-lg border" style="border-color: #242B38;">
-                        <h4 class="font-bold text-lg uppercase" style="color: #242B38;">Анти-агрегация</h4>
-                        <p class="text-xs" style="color: #242B38;">Борьба с патологическими белками</p>
-                    </div>
-                </div>
-                <div class="text-4xl" style="color: #8A1538;">↓</div>
-                <div class="p-4 rounded-lg shadow-lg" style="background-color: #D4AF37;">
-                    <p class="text-xl font-bold text-center uppercase" style="color: #181A1B;">🛡️ Нейропротекция</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <footer class="text-center mt-16 md:mt-20 py-6 md:py-8 border-t" style="border-color: #242B38;">
-            <p class="text-sm md:text-base" style="color: #E5DFCA;">Инфографика основана на всестороннем анализе научных исследований.</p>
-            <p class="text-xs md:text-sm mt-2" style="color: #E5DFCA;">Информация носит ознакомительный характер. Консультируйтесь с врачом.</p>
-            <p class="text-xs md:text-sm font-bold mt-4 uppercase" style="color: #D4AF37;">От автора YASHKA LEGEND</p>
+            <!-- Section 3: Cognitive Effects -->
+            <section id="cognition">
+                <h2>3. Влияние на Когнитивные Функции</h2>
+                <div class="card">
+                    <h3>Внимание и скорость реакции</h3>
+                    <p>Научный консенсус подтверждает: кофеин остро улучшает внимание. Мета-анализ 31 исследования показал значительное улучшение как точности, так и времени реакции. Эффект дозозависим: более высокие дозы (≥ 200 мг) дают больший прирост.</p>
+                </div>
+                <div class="insight">
+                    <p><strong>Критическое уточнение:</strong> Время реакции улучшается линейно с увеличением дозы, но точность имеет квадратичную зависимость — она улучшается до определенной точки, а затем может снижаться. Это означает, что "больше — не всегда лучше". Существует оптимальная доза, за пределами которой скорость растет за счет точности, что согласуется с законом Йеркса-Додсона.</p>
+                </div>
+                <div class="card">
+                    <h3>Рабочая память и другие функции</h3>
+                    <p>Влияние на рабочую память менее однозначно и сильно зависит от дозировки и когнитивной нагрузки. Некоторые исследования показывают, что кофеин может быть вреден для кратковременной памяти. Эффекты на сложные функции, такие как суждение и принятие решений, также непоследовательны.</p>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Доза кофеина</th>
+                                <th>Эффект на время реакции</th>
+                                <th>Эффект на точность</th>
+                                <th>Побочные эффекты</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&lt; 200 мг</td>
+                                <td>Умеренное улучшение</td>
+                                <td>Умеренное улучшение</td>
+                                <td>Минимальные</td>
+                            </tr>
+                            <tr>
+                                <td>≥ 200 мг</td>
+                                <td>Линейное улучшение</td>
+                                <td>Улучшение до пика, затем снижение</td>
+                                <td>Риск тревожности при >400 мг</td>
+                            </tr>
+                            <tr>
+                                <td>3 мг/кг</td>
+                                <td>Значительное улучшение</td>
+                                <td>Значительное улучшение</td>
+                                <td>Незначительные</td>
+                            </tr>
+                             <tr>
+                                <td>6 мг/кг</td>
+                                <td>Значительное улучшение (без разницы с 3 мг/кг)</td>
+                                <td>Значительное улучшение (без разницы с 3 мг/кг)</td>
+                                <td>Незначительные</td>
+                            </tr>
+                            <tr>
+                                <td>9 мг/кг</td>
+                                <td>Без улучшения</td>
+                                <td>Без улучшения</td>
+                                <td>Высокая частота (тахикардия, тревожность)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <!-- Section 4: Mood & Perception -->
+            <section id="mood">
+                <h2>4. Влияние на Настроение и Восприятие</h2>
+                <div class="card">
+                    <h3>Бодрость и тревожность</h3>
+                    <p>Кофеин последовательно повышает субъективную бодрость и энергию. Однако этот эффект имеет свою цену: мета-анализ показал, что потребление кофеина значительно увеличивает риск тревожности, особенно при дозах выше 400 мг.</p>
+                </div>
+                <div class="insight">
+                    <p><strong>Ключевой баланс:</strong> Те же механизмы, что вызывают желаемое возбуждение (активация ЦНС, высвобождение норадреналина), при высоких дозах пересекают порог и проявляются как тревога и нервозность. Это подчеркивает тонкую грань между полезной стимуляцией и вредным перевозбуждением.</p>
+                </div>
+                 <div class="card">
+                    <h3>Качество сна</h3>
+                    <p>Кофеин значительно нарушает сон, даже если употреблен за 6-8 часов до сна. Он задерживает наступление сна и ухудшает его архитектуру.</p>
+                </div>
+                <div class="insight">
+                    <p><strong>Слепое пятно потребителя:</strong> Люди часто не могут точно оценить негативное влияние кофеина на свой сон. Это может привести к порочному кругу: плохой сон усиливает зависимость от кофеина для поддержания дневной бодрости, что, в свою очередь, еще больше ухудшает качество сна.</p>
+                </div>
+            </section>
+
+            <!-- Section 5: Dosing -->
+            <section id="dosing">
+                <h2>5. Дозировки и Индивидуальные Вариации</h2>
+                <div class="card">
+                    <h3>Оптимальные и токсические дозы</h3>
+                    <p>Потребление до 400 мг кофеина в день (примерно 5.7 мг/кг массы тела) считается безопасным для большинства здоровых взрослых. Токсические дозы начинаются от 10 г в день, что значительно выше типичного потребления.</p>
+                </div>
+                 <div class="insight">
+                    <p><strong>Генетическая предрасположенность:</strong> Индивидуальные реакции на кофеин сильно варьируются из-за генетики, в частности, из-за различий в скорости метаболизма (ген CYP1A2) и чувствительности аденозиновых рецепторов (ген ADORA2A). Это объясняет, почему одна и та же доза может быть полезной для одного человека и вредной для другого.</p>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Доза</th>
+                                <th>Основные эффекты</th>
+                                <th>Потенциальные риски</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&lt; 100 мг</td>
+                                <td>Легкое повышение бодрости и внимания.</td>
+                                <td>Минимальные.</td>
+                            </tr>
+                             <tr>
+                                <td>100-200 мг</td>
+                                <td>Оптимальное улучшение точности и внимания.</td>
+                                <td>Низкий риск тревожности.</td>
+                            </tr>
+                            <tr>
+                                <td>200-400 мг</td>
+                                <td>Дальнейшее улучшение скорости реакции, но точность может падать.</td>
+                                <td>Умеренный риск тревожности, нарушения сна.</td>
+                            </tr>
+                            <tr>
+                                <td>> 400 мг</td>
+                                <td>Высокий риск тревожности, раздражительности, бессонницы.</td>
+                                <td>Превышение безопасных лимитов.</td>
+                            </tr>
+                             <tr>
+                                <td>> 10 г</td>
+                                <td>Острая токсичность.</td>
+                                <td>Смертельная доза.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 6: Conclusion -->
+            <section id="conclusion">
+                <h2>6. Заключение</h2>
+                <div class="card">
+                    <p>Кофеин — мощный и сложный модулятор, а не универсальный усилитель. Его основное действие — антагонизм аденозиновых рецепторов — эффективно повышает бдительность и концентрацию.</p>
+                    <p>Влияние на когнитивные функции дозозависимо и специфично для задачи: скорость реакции улучшается линейно, а точность имеет U-образную кривую. Субъективные эффекты также зависят от дозы, с риском перехода от полезного возбуждения к вредной тревожности. Индивидуальные генетические различия играют ключевую роль в определении реакции на кофеин.</p>
+                    <p><strong>Итог:</strong> Умеренное потребление (до 400 мг/день) может принести значительные преимущества, но для оптимизации эффектов и минимизации рисков необходим персонализированный подход, учитывающий индивидуальную переносимость, цели и время потребления.</p>
+                </div>
+            </section>
+            
+            <!-- Sources Section -->
+            <section class="sources-section">
+                <h2>Источники</h2>
+                <ul class="sources-list">
+                    <li>A Comprehensive Review on Pharmacological ... - Semantic Scholar</li>
+                    <li>(PDF) A COMPREHENSIVE REVIEW ON PHARMACOLOGICAL ... - ResearchGate</li>
+                    <li>A systematic review and meta-analysis of the acute effect of caffeine on attention - PubMed</li>
+                    <li>Effects of Various Caffeine Doses on Cognitive Abilities in Female ... - MDPI</li>
+                    <li>Caffeine intake and anxiety: a meta-analysis - Frontiers</li>
+                    <li>Dose and timing effects of caffeine on subsequent sleep - academic.oup.com</li>
+                    <li>Habitual caffeine intake, genetics and cognitive performance - PMC</li>
+                    <!-- Другие источники добавлены для полноты -->
+                </ul>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            От автора YASHKA LEGEND
         </footer>
 
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            function wrapText(str, maxWidth) {
-                if (typeof str !== 'string' || str.length <= maxWidth) { return str; }
-                const words = str.split(' ');
-                const lines = [];
-                let currentLine = words[0];
-                for (let i = 1; i < words.length; i++) {
-                    if ((currentLine + ' ' + words[i]).length > maxWidth) {
-                        lines.push(currentLine);
-                        currentLine = words[i];
-                    } else {
-                        currentLine += ' ' + words[i];
-                    }
-                }
-                lines.push(currentLine);
-                return lines;
-            }
-
-            const tooltipTitleCallback = function(tooltipItems) {
-                const item = tooltipItems[0];
-                let label = item.chart.data.labels[item.dataIndex];
-                if (Array.isArray(label)) { return label.join(' '); }
-                return label;
-            };
-
-            const riskReductionCtx = document.getElementById('riskReductionChart').getContext('2d');
-            new Chart(riskReductionCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Не пьющие кофе', '1-2 чашки в день', '≥3 чашек в день'].map(label => wrapText(label, 16)),
-                    datasets: [{
-                        label: 'Риск болезни Альцгеймера',
-                        data: [1.0, 0.85, 0.75],
-                        backgroundColor: 'rgba(212, 175, 55, 0.7)',
-                        borderColor: 'rgba(212, 175, 55, 1)',
-                        borderWidth: 2,
-                        borderRadius: 3
-                    }, {
-                        label: 'Риск болезни Паркинсона',
-                        data: [1.0, 0.82, 0.71],
-                        backgroundColor: 'rgba(138, 21, 56, 0.7)',
-                        borderColor: 'rgba(138, 21, 56, 1)',
-                        borderWidth: 2,
-                        borderRadius: 3
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                             labels: { color: '#242B38' }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                title: tooltipTitleCallback,
-                                label: function(context) {
-                                    let label = context.dataset.label || '';
-                                    if (label) { label += ': '; }
-                                    const value = context.parsed.y;
-                                    if (value !== null) {
-                                        const reduction = ((1 - value) * 100).toFixed(0);
-                                        label += `Снижение риска на ${reduction}% (HR: ${value.toFixed(2)})`;
-                                    }
-                                    return label;
-                                }
-                            },
-                            titleColor: '#242B38',
-                            bodyColor: '#242B38',
-                            backgroundColor: '#E5DFCA',
-                            borderColor: '#D4AF37',
-                            borderWidth: 1
-                        },
-                         title: { display: false }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            min: 0.6,
-                            max: 1.05,
-                            title: {
-                                display: true,
-                                text: 'Относительный риск (HR)',
-                                color: '#242B38'
-                            },
-                            ticks: { color: '#242B38' },
-                            grid: { color: 'rgba(36, 43, 56, 0.5)' }
-                        },
-                        x: {
-                             ticks: { color: '#242B38' },
-                             grid: { display: false }
-                        }
-                    }
-                }
-            });
-        });
-    </script>
 </body>
 </html>
+
