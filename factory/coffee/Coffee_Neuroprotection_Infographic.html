@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Полный разбор креатина моногидрата: эффективность, механизм действия, протоколы приема и научные факты. HORMESIS HUB.">
-    <title>HORMESIS HUB v2.0: КРЕАТИН МОНОГИДРАТ</title>
+    <title>Креатин Моногидрат - HORMESIS HUB</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+
     <style>
-        /* --- РЕВИЗИЯ V2.0: Все "магические числа" и hex-коды заменены на переменные. --- */
+        /* * ===================================================================
+         * МЕТОДОЛОГИЯ: БАЗОВЫЕ СТИЛИ И ПРИНЦИПЫ MOBILE-FIRST
+         * ===================================================================
+         * Реализация принципа "Mobile-First".
+         * Базовые стили определены глобально, а улучшения для
+         * больших экранов добавляются через медиа-запросы с min-width.
+         * Метатег viewport уже установлен в HTML.
+        */
+
         :root {
             --main-bg: #181A1B;
             --block-bg: #242B38;
             --card-bg: #E5DFCA;
-            --headline-accent: #D4AF37;
+            --headline-accent: #D4AF37; /* Золотой акцент для монументальности */
             --danger-accent: #8A1538;
             --text-light: #E5DFCA;
             --text-dark: #181A1B;
-            --text-gray: #888;
-            --border-color: #444; /* ИСПРАВЛЕНО: Захардкоженный цвет #333/#444 вынесен в переменную */
-            --shadow-color: rgba(0, 0, 0, 0.2); /* ИСПРАВЛЕНО: Захардкоженная тень вынесена в переменную */
+            --text-gray: #AAAAAA;
+            --border-color: #3e4859;
         }
 
-        /* --- БАЗОВЫЕ СТИЛИ И СБРОС --- */
-        *,
-        *::before,
-        *::after {
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -42,90 +45,125 @@
             background-color: var(--main-bg);
             color: var(--text-light);
             font-family: 'Inter', sans-serif;
-            font-size: 18px;
+            font-size: 16px;
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
+        
+        /* * ===================================================================
+         * МЕТОДОЛОГИЯ: СЕМАНТИЧЕСКАЯ СТРУКТУРА И ДОСТУПНОСТЬ
+         * ===================================================================
+         * Применение семантических HTML5-ленДмарков (<header>, <main>, <footer>) 
+         * для навигации ассистивными технологиями.
+         * Использование :focus-visible для улучшения доступности фокуса
+         * без ущерба для пользователей мыши.
+        */
 
-        /* --- СТРУКТУРА И МАКЕТ (MOBILE-FIRST) --- */
-        .container {
-            width: 90%;
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 2rem 0;
+        main {
+            display: block; /* Гарантирует семантику <main> в старых браузерах */
         }
 
-        section {
-            padding: 3rem 0;
+        a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible, details > summary:focus-visible {
+            outline: 3px solid var(--headline-accent);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+        /* Отключение стандартного фокуса, т.к. есть :focus-visible */
+        a:focus, button:focus, [tabindex="0"]:focus, details > summary:focus {
+            outline: none;
+        }
+
+        /* Типографика */
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-light);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--headline-accent);
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--headline-accent);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 1rem;
+        }
+        
+        p, li {
+            margin-bottom: 1rem;
+            max-width: 65ch; /* Улучшает читаемость */
+        }
+        
+        a {
+            color: var(--headline-accent);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* * ===================================================================
+         * МЕТОДОЛОГИЯ: ГЕШТАЛЬТ-ПРИНЦИПЫ И МАКЕТИРОВАНИЕ
+         * ===================================================================
+         * Применение CSS Flexbox и Grid для адаптивных макетов.
+         * Grid используется для макро-разметки (.container), 
+         * Flexbox для микро-разметки (например, внутри карточек).
+         * Принцип Близости: отступы (gap, margin) группируют связанные элементы.
+         * Принцип Общего Региона: фон и границы (.content-block, .factoid-card) 
+         * объединяют элементы в единые группы.
+        */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .monumental-header {
+            text-align: center;
+            padding: 4rem 1rem;
+            margin-bottom: 2rem;
             border-bottom: 1px solid var(--border-color);
+        }
+        .monumental-header .subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--text-gray);
+            margin-top: 0.5rem;
+        }
+
+        .content-block {
+            background-color: var(--block-bg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-
-        section.is-visible {
+        .content-block.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* --- ТИПОГРАФИКА --- */
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            line-height: 1.2;
-            color: var(--text-light);
-            /* ПРИНЦИП: Гештальт-принцип близости. */
-            margin-top: 1.5em;
-            margin-bottom: 0.5em;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            color: var(--headline-accent);
-            text-transform: uppercase;
-        }
-
-        h2 {
-            font-size: clamp(2rem, 6vw, 3rem);
-            border-left: 5px solid var(--headline-accent);
-            padding-left: 1rem;
-        }
-
-        h3 {
-            font-size: clamp(1.25rem, 4vw, 1.75rem);
-            font-weight: 700;
-        }
-        
-        p {
-            margin-bottom: 1rem;
-        }
-
-        .citation {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--text-gray);
-            margin-top: -0.5rem;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        /* --- КОМПОНЕНТЫ --- */
-        
-        /* HEADER */
-        .main-header {
-            min-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        /* MEGA-FACTOIDS: Применение Гештальт-принципа общего региона */
+        /* Фактоиды */
         .factoids-grid {
             display: grid;
             gap: 1.5rem;
+            grid-template-columns: 1fr; /* Mobile-first: одна колонка  */
         }
 
         .factoid-card {
@@ -133,231 +171,300 @@
             color: var(--text-dark);
             padding: 1.5rem;
             border-radius: 8px;
-            box-shadow: 0 4px 15px var(--shadow-color);
-            border: 1px solid var(--headline-accent);
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
         }
-        
-        .factoid-card__title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
+        .factoid-card h3 {
+            color: var(--text-dark);
             margin-top: 0;
         }
-
-        .factoid-card__highlight {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--main-bg);
+        .factoid-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        .factoid-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            color: var(--danger-accent);
         }
 
-        /* MYTH-BUSTING */
-        .myth-buster {
-            background-color: var(--danger-accent);
-            color: var(--text-light);
-            padding: 2rem;
-            border-radius: 8px;
-            /* ИСПРАВЛЕНО: Захардкоженный цвет заменен на переменную для консистентности. */
-            border-left: 8px solid var(--headline-accent);
-        }
-        .myth-buster h2 {
-            border: none;
-            padding-left: 0;
-        }
-
-        /* INFOGRAPHIC: Принципы визуализации Тафти */
-        .protocol-infographic {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .protocol-phase {
+        /* * ===================================================================
+         * МЕТОДОЛОГИЯ: ПРОГРЕССИВНОЕ РАСКРЫТИЕ
+         * ===================================================================
+         * Использование нативных <details> и <summary> для сокрытия
+         * второстепенной информации, что снижает когнитивную нагрузку.
+         * Это доступное решение, не требующее JS.
+        */
+        details {
             border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            text-align: center;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        details[open] {
+             background-color: rgba(0,0,0,0.1);
         }
 
-        .protocol-phase__title {
-            font-family: 'Montserrat';
+        summary {
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
+            padding: 1rem;
+            cursor: pointer;
+            list-style: none; /* Убрать стандартный маркер */
+            position: relative;
+        }
+        summary::-webkit-details-marker {
+            display: none; /* Убрать маркер в WebKit-браузерах */
+        }
+        summary::after {
+            content: '+';
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
             color: var(--headline-accent);
-            font-size: 1.2rem;
-            margin: 0 0 0.5rem 0;
         }
-
-        .protocol-phase__dosage {
-            font-size: 2rem;
-            font-weight: 900;
-            /* ИСПРАВЛЕНО: Захардкоженный #fff заменен на переменную для консистентности. */
-            color: var(--text-light);
-            margin: 0;
+        details[open] summary::after {
+            content: '−';
         }
-
-        .protocol-phase__duration {
-            color: var(--text-gray);
-            margin: 0;
-        }
-
-        /* FOOTER */
-        .main-footer {
-            text-align: center;
-            padding: 2rem 0;
+        .details-content {
+            padding: 0 1rem 1rem 1rem;
             border-top: 1px solid var(--border-color);
         }
-        .footer-link {
-            color: var(--headline-accent);
-            text-decoration: none;
-            font-weight: bold;
-            /* УЛУЧШЕНИЕ: Увеличена область касания для доступности (Закон Фиттса). */
-            display: inline-block;
-            padding: 0.5rem;
-            border-radius: 4px;
-        }
-        /* ПРИНЦИП: Контекстно-зависимый фокус. */
-        .footer-link:focus-visible {
-            outline: 3px solid var(--headline-accent);
-            outline-offset: 2px;
+
+        .citation {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            font-style: italic;
+            display: block;
+            margin-top: 0.5rem;
         }
 
-        /* --- АДАПТИВНОСТЬ (PROGRESSIVE ENHANCEMENT) --- */
+        /* * ===================================================================
+         * МЕТОДОЛОГИЯ: ЗАКОН ФИТТСА И РАЗМЕР СЕНСОРНЫХ ЦЕЛЕЙ
+         * ===================================================================
+         * Кнопка .monument-button имеет минимальный размер и большие отступы,
+         * чтобы быть легко нажимаемой целью.
+         * Минимальный размер цели не менее 48x48 CSS пикселей.
+        */
+        .full-research {
+            text-align: center;
+        }
+
+        .monument-button {
+            display: inline-block;
+            background-color: var(--headline-accent);
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            border: 2px solid var(--headline-accent);
+            min-width: 48px;
+            min-height: 48px;
+            transition: background-color 0.3s, color 0.3s, transform 0.2s;
+        }
+        .monument-button:hover, .monument-button:focus-visible {
+            background-color: transparent;
+            color: var(--headline-accent);
+            transform: translateY(-2px);
+        }
+
+        /* Футер */
+        .main-footer {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        .main-footer p {
+            margin-bottom: 0.5rem;
+        }
+        .main-footer .copyright {
+            margin-top: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-light);
+            font-weight: 700;
+        }
+        
+        /* * ===================================================================
+         * МЕТОДОЛОГИЯ: ПРОГРЕССИВНОЕ УЛУЧШЕНИЕ (ДЛЯ ПЛАНШЕТОВ И ВЫШЕ)
+         * ===================================================================
+         * Медиа-запрос с min-width добавляет более сложный макет для 
+         * экранов шире 768px.
+        */
         @media (min-width: 768px) {
+            body {
+                font-size: 18px;
+            }
+            .container {
+                 padding: 3rem 2rem;
+            }
+            .content-block {
+                 padding: 3rem;
+            }
             .factoids-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .protocol-infographic {
-                flex-direction: row;
-                justify-content: center;
-                align-items: stretch;
-            }
-            .protocol-phase {
-                flex: 1;
+                grid-template-columns: repeat(2, 1fr); /* Две колонки на планшетах */
             }
         }
+        
+        @media (min-width: 1024px) {
+             .factoids-grid {
+                /* На больших экранах можно оставить 2, т.к. текст длинный */
+             }
+        }
+
     </style>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedBlocks = document.querySelectorAll('.content-block');
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                animatedBlocks.forEach(block => {
+                    observer.observe(block);
+                });
+            } else {
+                // Фоллбэк для старых браузеров
+                animatedBlocks.forEach(block => {
+                    block.classList.add('is-visible');
+                });
+            }
+        });
+    </script>
 </head>
 <body>
-
-    <header class="main-header container">
+    
+    <header class="monumental-header">
         <h1>Креатин Моногидрат</h1>
-        <p>Ключ к пиковой мощности и силе</p>
+        <p class="subtitle">Глава из Великого Свитка HORMESIS HUB</p>
     </header>
 
-    <main id="content">
-        <section id="main-thesis" class="container">
-            <h2>Великий Тезис</h2>
+    <main class="container">
+
+        <section id="main-thesis" class="content-block" aria-labelledby="main-thesis-title">
+            <h2 id="main-thesis-title">Ключевой Вывод</h2>
             <p>
                 Креатин моногидрат является наиболее изученной и эффективной эргогенной добавкой, которая напрямую увеличивает запасы фосфокреатина в мышцах, что приводит к значительному улучшению пиковой мощности, силовых показателей и анаэробной выносливости в коротких, взрывных упражнениях.
             </p>
-            <span class="citation">Систематический обзор: 'International Society of Sports Nutrition position stand: safety and efficacy of creatine supplementation in exercise, sport, and medicine', Kreider R.B. et al., 2017.</span>
+            <span class="citation">Систематический обзор: 'International Society of Sports Nutrition position stand: safety and efficacy of creatine supplementation in exercise, sport, and medicine', Kreider R.B. et al., 2017. (doi: 10.1186/s12970-017-0173-z)</span>
         </section>
 
-        <section id="mega-factoids" class="container">
-            <h2>Мега-Фактоиды</h2>
+        <section id="factoids" class="content-block" aria-labelledby="factoids-title">
+            <h2 id="factoids-title">Цифры и Факты</h2>
             <div class="factoids-grid">
-                <div class="factoid-card">
-                    <h3 class="factoid-card__title">Количественный Масштаб</h3>
-                    <p>Курсовой прием увеличивает силовые показатели в жимовых упражнениях на <span class="factoid-card__highlight">5-15%</span>, а количество повторений до отказа — на <span class="factoid-card__highlight">10-20%</span>.</p>
-                    <span class="citation">Мета-анализ: 'Effects of creatine supplementation on performance and training adaptations', Rawson E.S. & Volek J.S., 2003.</span>
-                </div>
-                <div class="factoid-card">
-                    <h3 class="factoid-card__title">Удивительный Механизм</h3>
-                    <p>Креатин играет ключевую роль в энергетическом метаболизме мозга. Его прием может улучшать кратковременную память и когнитивные функции, особенно в условиях стресса.</p>
-                     <span class="citation">Систематический обзор: 'Creatine supplementation and cognitive performance in healthy individuals', Avgerinos K.I. et al., 2018.</span>
-                </div>
+                <article class="factoid-card">
+                    <svg class="factoid-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" /></svg>
+                    <div>
+                        <h3>Количественный Масштаб</h3>
+                        <p>Курсовой прием в среднем увеличивает силовые показатели в жимовых упражнениях на 5-15% и количество повторений до отказа — на 10-20%.</p>
+                        <span class="citation">Мета-анализ: 'Effects of creatine supplementation...', Rawson E.S. & Volek J.S., 2003.</span>
+                    </div>
+                </article>
+                <article class="factoid-card">
+                    <svg class="factoid-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                    <div>
+                        <h3>Практическая Польза</h3>
+                        <p>Для быстрой загрузки: 0.3 г/кг (обычно 20 г), разделенные на 4 приема, в течение 5-7 дней. Поддерживающая доза: 3-5 г ежедневно.</p>
+                        <span class="citation">Позиционный документ: 'International Society of Sports Nutrition position stand...', Kreider R.B. et al., 2017.</span>
+                    </div>
+                </article>
+                <article class="factoid-card">
+                    <svg class="factoid-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                    <div>
+                        <h3>Разрушение Мифа</h3>
+                        <p>Долгосрочные исследования (до 5 лет) не выявили вреда для здоровья почек у здоровых людей при приеме в рекомендованных дозировках.</p>
+                        <span class="citation">РКИ: 'Long-term creatine supplementation...', Kreider R.B. et al., 2003.</span>
+                    </div>
+                </article>
+                <article class="factoid-card">
+                    <svg class="factoid-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM21 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Zm-9.75 3.75c-1.312 0-2.557.175-3.75.5-1.193.324-2.25.79-2.25 1.25v.75m9-2.5c-1.312 0-2.557.175-3.75.5-1.193.324-2.25.79-2.25 1.25v.75m-3.75-.5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Zm9-1.5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>
+                    <div>
+                        <h3>Удивительный Механизм</h3>
+                        <p>Креатин улучшает кратковременную память и когнитивные функции, особенно в условиях стресса, таких как депривация сна.</p>
+                        <span class="citation">Систематический обзор: 'Creatine supplementation and cognitive performance...', Avgerinos K.I. et al., 2018.</span>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <section id="main-analysis" class="container">
-            <h2>Основной Анализ</h2>
-            
-            <h3>Фундаментальный Механизм Действия</h3>
-            <p>Основная функция креатина — участие в системе фосфагенов (АТФ-КФ), самом быстром источнике энергии. Во время интенсивных упражнений (до 10 секунд) фосфокреатин мгновенно ресинтезирует АДФ обратно в АТФ — универсальную энергетическую валюту. Прием добавки увеличивает запасы фосфокреатина на 20-40%, позволяя поддерживать пиковую мощность дольше и быстрее восстанавливаться между подходами.</p>
+        <section id="mechanisms" class="content-block" aria-labelledby="mechanisms-title">
+            <h2 id="mechanisms-title">Механизм Действия</h2>
+            <h3>Фундаментальный Механизм</h3>
+            <p>
+                Основная функция креатина — участие в системе фосфагенов (АТФ-КФ), самом быстром источнике энергии. В покое креатин превращается в фосфокреатин (КФ). Во время интенсивных упражнений (до 10 сек), КФ отдает фосфатную группу молекуле АДФ, мгновенно ресинтезируя ее обратно в АТФ — универсальную энергетическую валюту. Прием креатина увеличивает запасы КФ на 20-40%, позволяя поддерживать пиковую мощность дольше.
+            </p>
             <span class="citation">Обзор: 'Creatine and its application as an ergogenic aid', Cooper R. et al., 2012.</span>
-
-            <h3>Ключевые Эффекты на Производительность</h3>
-            <ul>
-                <li><strong>Увеличение силы и мощности:</strong> За счет повышения доступности АТФ, креатин напрямую улучшает производительность в силовых видах спорта, тяжелой атлетике и спринте.</li>
-                <li><strong>Увеличение мышечной массы:</strong> Креатин способствует увеличению объема мышечных клеток за счет задержки воды (волюмизация), что служит сигналом для анаболических процессов и роста сухой массы.</li>
-                <li><strong>Улучшение анаэробной выносливости:</strong> Способность быстрее ресинтезировать АТФ позволяет выполнять больше работы в серии подходов, что критически важно для бодибилдинга и кроссфита.</li>
-            </ul>
-        </section>
-
-        <section id="infographic" class="container">
-            <h2>Протокол Применения</h2>
-            <div class="protocol-infographic">
-                <div class="protocol-phase">
-                    <h3 class="protocol-phase__title">Фаза Загрузки (Опционально)</h3>
-                    <p class="protocol-phase__dosage">~20 г / день</p>
-                    <p class="protocol-phase__duration">(0.3 г/кг, 4 порции по 5 г) в течение 5-7 дней</p>
-                </div>
-                <div class="protocol-phase">
-                    <h3 class="protocol-phase__title">Поддерживающая Фаза</h3>
-                    <p class="protocol-phase__dosage">3-5 г / день</p>
-                    <p class="protocol-phase__duration">Ежедневно для поддержания уровня</p>
-                </div>
-            </div>
-             <span class="citation" style="text-align: center; margin-top: 1rem;">Позиционный документ: 'International Society of Sports Nutrition position stand...', Kreider R.B. et al., 2017.</span>
-        </section>
-        
-        <section id="myth-busting" class="container">
-            <div class="myth-buster">
-                <h2>Разрушение Мифа</h2>
-                <p>Вопреки популярному мифу, многочисленные долгосрочные исследования (длительностью до 5 лет) не выявили никаких доказательств вреда для здоровья почек у здоровых людей, принимающих креатин в рекомендованных дозировках.</p>
-                <span class="citation">РКИ: 'Long-term creatine supplementation does not significantly affect clinical markers of health in athletes', Kreider R.B. et al., 2003.</span>
-            </div>
-        </section>
-
-        <section id="synergy-context" class="container">
-            <h2>Контекст и Синергия</h2>
-            <h3>Риски и Побочные Эффекты</h3>
-            <p>Самый частый эффект — увеличение массы тела на 1-2 кг в первую неделю за счет задержки воды. Иногда могут возникать желудочно-кишечные расстройства при приеме больших доз (10+ г) за раз. Существуют "неответчики" (non-responders, ~20-30%), у которых уровень креатина в мышцах изначально высок.</p>
-            <span class="citation">Обзор: 'Creatine Supplementation', Syrotuik D.G. & Bell G.J., 2004.</span>
             
-            <h3>Синергия</h3>
-            <p>Прием креатина с углеводами (сок, гейнер) может улучшить его усвоение. Эффективность не снижается при одновременном приеме с кофеином. Прием после тренировки может дать небольшое преимущество для восстановления.</p>
-             <span class="citation">Мета-анализ: 'The effects of pre versus post workout supplementation...', Forbes S.C. et al., 2021.</span>
+            <h3 style="margin-top: 2rem;">Ключевые Эффекты</h3>
+            <details>
+                <summary>Увеличение силы и мощности</summary>
+                <div class="details-content">
+                    <p>За счет повышения доступности АТФ, креатин напрямую улучшает производительность в силовых видах спорта, тяжелой атлетике и спринте.</p>
+                    <span class="citation">Мета-анализ: 'Effects of creatine supplementation...', Rawson E.S. & Volek J.S., 2003.</span>
+                </div>
+            </details>
+            <details>
+                <summary>Увеличение мышечной массы</summary>
+                <div class="details-content">
+                    <p>Креатин способствует увеличению объема клеток за счет задержки воды (волюмизация), что может служить анаболическим сигналом и приводит к большему приросту сухой мышечной массы.</p>
+                    <span class="citation">Обзор: 'The effects of creatine supplementation...', Volek J.S. & Rawson E.S., 2000.</span>
+                </div>
+            </details>
+            <details>
+                <summary>Улучшение анаэробной выносливости</summary>
+                <div class="details-content">
+                    <p>Способность быстрее ресинтезировать АТФ позволяет выполнять больше работы в серии подходов, что критически важно для бодибилдинга и кроссфита.</p>
+                    <span class="citation">РКИ: 'The effect of creatine monohydrate ingestion...', Jagim A.R. et al., 2012.</span>
+                </div>
+            </details>
+        </section>
+
+        <section id="personalization" class="content-block" aria-labelledby="personalization-title">
+            <h2 id="personalization-title">Протоколы и Риски</h2>
+             <h3>Дозировки и Применение</h3>
+             <ul>
+                 <li><b>Фаза загрузки (опционально):</b> 20 грамм в день (4 порции по 5 г) в течение 5-7 дней для максимального насыщения мышц.</li>
+                 <li><b>Поддерживающая фаза:</b> 3-5 грамм ежедневно. Прием больше 5 грамм в день не дает дополнительных преимуществ.</li>
+                 <li><b>Контекст и Синергия:</b> Прием с углеводами может улучшить усвоение. Эффективность не снижается при приеме с кофеином. Прием после тренировки может иметь небольшое преимущество.</li>
+             </ul>
+
+             <h3>Риски и Побочные Эффекты</h3>
+             <ul>
+                 <li><b>Увеличение массы тела:</b> Ожидаемый эффект на 1-2 кг в первую неделю за счет задержки воды в мышцах.</li>
+                 <li><b>Желудочно-кишечные расстройства:</b> Могут возникать при приеме больших доз (10+ грамм) за один раз.</li>
+                 <li><b>"Неответчики" (Non-responders):</b> Примерно 20-30% людей, у которых уровень креатина в мышцах изначально высок и дополнительный прием не дает выраженного эффекта.</li>
+             </ul>
+        </section>
+
+        <section class="full-research content-block">
+             <h3>Первоисточник Знаний</h3>
+             <p>Для глубокого погружения в тему и анализа всех исследований, обратитесь к полному свитку знаний.</p>
+             <a href="https://disk.yandex.ru/d/ca7dUGLJXUhNeA" class="monument-button" target="_blank" rel="noopener noreferrer">Открыть Полный Свиток</a>
         </section>
 
     </main>
-    
-    <footer class="main-footer container">
-        <p>HORMESIS HUB &copy; 2025</p>
-        <p>Это лишь выжимка. <a href="https://disk.yandex.ru/d/ca7dUGLJXUhNeA" class="footer-link" target="_blank" rel="noopener noreferrer">Изучить полный свиток знаний</a>.</p>
+
+    <footer class="main-footer" role="contentinfo">
+        <p>Потели над созданием: <a href="https://t.me/yashka_legend" target="_blank" rel="noopener noreferrer">Yashka_Legend</a> х Искусственный Интеллект</p>
+        <p>Дисклеймер: Информация, представленная здесь, не является медицинской консультацией. Всегда консультируйтесь с врачом перед началом приема любых добавок.</p>
+        <p class="copyright">© HORMESIS HUB. Стань лучшей версией себя.</p>
     </footer>
 
-    <script>
-        /*
-         * МЕТОДОЛОГИЯ: "Кодирование чистого фронтенд-кода", "Принципы оптимизации веб-производительности"
-         * ПРИНЦИП: DRY (Don't Repeat Yourself).
-         * ПРИНЦИП: Progressive Enhancement. Анимации - улучшение, не обязательная функция.
-         * УЛУЧШЕНИЕ v2.0: Код оставлен максимально чистым и эффективным.
-        */
-        document.addEventListener('DOMContentLoaded', () => {
-            // Отложенный запуск для скрипта, не блокирующий рендеринг.
-            const sections = document.querySelectorAll('section');
-
-            // Проверка наличия элементов перед созданием наблюдателя
-            if (!sections.length) {
-                return;
-            }
-            
-            const handleIntersection = (entries, observer) => {
-                entries.forEach(entry => {
-                    // entry.isIntersecting - более надежное свойство
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target); // Прекратить наблюдение после анимации для экономии ресурсов
-                    }
-                });
-            };
-
-            const observer = new IntersectionObserver(handleIntersection, {
-                root: null, // viewport
-                rootMargin: '0px',
-                threshold: 0.1 // 10% элемента должно быть видимо для срабатывания
-            });
-
-            sections.forEach(section => observer.observe(section));
-        });
-    </script>
 </body>
 </html>
