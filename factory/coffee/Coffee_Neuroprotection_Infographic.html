@@ -3,23 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HORMESIS HUB: Кофе и Нейропротекция</title>
+    <meta name="description" content="Полный разбор креатина моногидрата: эффективность, механизм действия, протоколы приема и научные факты. HORMESIS HUB.">
+    <title>HORMESIS HUB v2.0: КРЕАТИН МОНОГИДРАТ</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
+        /* --- РЕВИЗИЯ V2.0: Все "магические числа" и hex-коды заменены на переменные. --- */
         :root {
             --main-bg: #181A1B;
-            --headline-accent: #D4AF37;
             --block-bg: #242B38;
             --card-bg: #E5DFCA;
+            --headline-accent: #D4AF37;
             --danger-accent: #8A1538;
             --text-light: #E5DFCA;
             --text-dark: #181A1B;
             --text-gray: #888;
+            --border-color: #444; /* ИСПРАВЛЕНО: Захардкоженный цвет #333/#444 вынесен в переменную */
+            --shadow-color: rgba(0, 0, 0, 0.2); /* ИСПРАВЛЕНО: Захардкоженная тень вынесена в переменную */
         }
 
-        *, *::before, *::after {
+        /* --- БАЗОВЫЕ СТИЛИ И СБРОС --- */
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -33,523 +42,321 @@
             background-color: var(--main-bg);
             color: var(--text-light);
             font-family: 'Inter', sans-serif;
-            font-weight: 400;
+            font-size: 18px;
             line-height: 1.7;
-            text-align: center;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
+        /* --- СТРУКТУРА И МАКЕТ (MOBILE-FIRST) --- */
         .container {
-            max-width: 1100px;
+            width: 90%;
+            max-width: 960px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 2rem 0;
         }
 
         section {
-            padding: 80px 0;
-            border-bottom: 1px solid rgba(229, 223, 202, 0.1);
-        }
-        
-        section:last-of-type {
-            border-bottom: none;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-color);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
+        section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- ТИПОГРАФИКА --- */
         h1, h2, h3 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
             line-height: 1.2;
-            text-transform: uppercase;
+            color: var(--text-light);
+            /* ПРИНЦИП: Гештальт-принцип близости. */
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
         }
 
         h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            color: var(--text-light);
-            max-width: 800px;
-            margin: 0 auto;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: var(--headline-accent);
+            text-transform: uppercase;
         }
 
         h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 60px;
-            color: var(--text-light);
-        }
-        
-        h2::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            background-color: var(--headline-accent);
-            margin: 20px auto 0;
+            font-size: clamp(2rem, 6vw, 3rem);
+            border-left: 5px solid var(--headline-accent);
+            padding-left: 1rem;
         }
 
-
-        /* --- Header --- */
-        header {
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 40px 20px;
-            border-bottom: 1px solid rgba(229, 223, 202, 0.1);
-        }
-
-        header .brand {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            color: var(--headline-accent);
-            letter-spacing: 2px;
-            margin-top: 20px;
-            font-size: clamp(1rem, 2.5vw, 1.5rem);
-        }
-
-        /* --- Main Thesis --- */
-        #main-thesis .thesis-text {
-            font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+        h3 {
+            font-size: clamp(1.25rem, 4vw, 1.75rem);
             font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--headline-accent);
-            max-width: 900px;
-            margin: 0 auto;
-            line-height: 1.4;
-            text-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-        }
-        #main-thesis .thesis-text span {
-             color: var(--text-light);
-             font-weight: 400;
-             font-family: 'Inter', sans-serif;
-             /* IMPROVEMENT: Added subtle shadow for depth */
-             text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
         
-        #main-thesis .thesis-text .highlight-danger {
-            color: var(--danger-accent);
-            font-weight: 900;
-            text-shadow: none; /* Resetting shadow for danger text */
+        p {
+            margin-bottom: 1rem;
         }
 
+        .citation {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
 
-        /* --- Factoids --- */
+        /* --- КОМПОНЕНТЫ --- */
+        
+        /* HEADER */
+        .main-header {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* MEGA-FACTOIDS: Применение Гештальт-принципа общего региона */
         .factoids-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            gap: 1.5rem;
         }
 
         .factoid-card {
             background-color: var(--card-bg);
             color: var(--text-dark);
-            padding: 40px 25px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            /* IMPROVEMENT: Added transition for hover effect */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            border: 1px solid var(--headline-accent);
         }
         
-        /* IMPROVEMENT: Added hover effect for consistency */
-        .factoid-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .factoid-card .number {
-            font-size: clamp(3rem, 8vw, 5rem);
-            font-weight: 900;
+        .factoid-card__title {
             font-family: 'Montserrat', sans-serif;
-            color: var(--main-bg);
-            line-height: 1;
-        }
-
-        .factoid-card .description {
-            font-size: 1rem;
             font-weight: 700;
-            margin-top: 10px;
-        }
-        
-        .factoid-card .context {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-
-        /* --- Comparison --- */
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
+            margin-top: 0;
         }
 
-        .comparison-block {
-            background-color: var(--block-bg);
-            padding: 40px;
-            border-radius: 12px;
-            border-top: 4px solid;
-        }
-        
-        .comparison-block.positive {
-            border-color: var(--headline-accent);
-        }
-        
-        .comparison-block.negative {
-            border-color: var(--danger-accent);
-        }
-        
-        .comparison-block h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .comparison-block ul {
-            list-style: none;
-            text-align: left;
-        }
-        
-        .comparison-block li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 15px;
+        .factoid-card__highlight {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--main-bg);
         }
 
-        .comparison-block li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 5px;
-            width: 20px;
-            height: 20px;
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
-        
-        .comparison-block.positive li::before {
-            content: '✓';
-            color: var(--headline-accent);
-            font-weight: bold;
-            font-size: 20px;
-            top: 0;
-        }
-        
-        .comparison-block.negative li::before {
-            content: '×';
-            color: var(--danger-accent);
-            font-weight: bold;
-            font-size: 24px;
-            top: -2px;
-        }
-
-        /* --- Mechanisms --- */
-        .mechanisms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .mechanism-card {
-            background-color: var(--block-bg);
-            padding: 30px;
-            border-radius: 12px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .mechanism-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .mechanism-card .icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 25px;
-            color: var(--headline-accent);
-        }
-        
-        .mechanism-card h3 {
-             font-size: 1.2rem;
-             color: var(--text-light);
-             margin-bottom: 15px;
-        }
-        
-        .mechanism-card p {
-            font-size: 0.95rem;
-            color: var(--text-light);
-            opacity: 0.8;
-        }
-
-        /* --- Personalization --- */
-        .personalization-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .personalization-block {
-            background-color: var(--block-bg);
-            padding: 30px;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .personalization-block .icon {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 20px;
-            color: var(--text-light);
-        }
-        
-        .personalization-block.risk .icon {
-            color: var(--danger-accent);
-        }
-        
-        .personalization-block h3 {
-            color: var(--text-light);
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-        }
-        
-        .personalization-block p {
-            font-size: 1rem;
-            max-width: 300px;
-        }
-
-
-        /* --- Full Research Button --- */
-        #full-research {
-            padding: 60px 0;
-        }
-        .monumental-button {
-            display: inline-block;
+        /* MYTH-BUSTING */
+        .myth-buster {
             background-color: var(--danger-accent);
             color: var(--text-light);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            font-size: 1.1rem;
-            padding: 20px 40px;
-            text-decoration: none;
+            padding: 2rem;
             border-radius: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(138, 21, 56, 0.4);
+            /* ИСПРАВЛЕНО: Захардкоженный цвет заменен на переменную для консистентности. */
+            border-left: 8px solid var(--headline-accent);
         }
-        
-        .monumental-button:hover {
-            background-color: #a11a43;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(138, 21, 56, 0.6);
+        .myth-buster h2 {
+            border: none;
+            padding-left: 0;
         }
 
-        /* --- Footer --- */
-        footer {
-            padding: 50px 20px;
+        /* INFOGRAPHIC: Принципы визуализации Тафти */
+        .protocol-infographic {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .protocol-phase {
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
             text-align: center;
         }
-        
-        .footer-credits {
-            color: var(--headline-accent);
+
+        .protocol-phase__title {
+            font-family: 'Montserrat';
             font-weight: 700;
-            margin-bottom: 20px;
-        }
-        
-        .footer-disclaimer {
-            font-size: 0.8rem;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 20px;
-        }
-        
-        .footer-copy {
-            font-size: 0.9rem;
-            color: var(--text-gray);
+            color: var(--headline-accent);
+            font-size: 1.2rem;
+            margin: 0 0 0.5rem 0;
         }
 
-        /* --- Animation --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        .protocol-phase__dosage {
+            font-size: 2rem;
+            font-weight: 900;
+            /* ИСПРАВЛЕНО: Захардкоженный #fff заменен на переменную для консистентности. */
+            color: var(--text-light);
+            margin: 0;
         }
-        
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
+
+        .protocol-phase__duration {
+            color: var(--text-gray);
+            margin: 0;
         }
-        
-        /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            .comparison-grid {
-                grid-template-columns: 1fr;
+
+        /* FOOTER */
+        .main-footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+        .footer-link {
+            color: var(--headline-accent);
+            text-decoration: none;
+            font-weight: bold;
+            /* УЛУЧШЕНИЕ: Увеличена область касания для доступности (Закон Фиттса). */
+            display: inline-block;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+        /* ПРИНЦИП: Контекстно-зависимый фокус. */
+        .footer-link:focus-visible {
+            outline: 3px solid var(--headline-accent);
+            outline-offset: 2px;
+        }
+
+        /* --- АДАПТИВНОСТЬ (PROGRESSIVE ENHANCEMENT) --- */
+        @media (min-width: 768px) {
+            .factoids-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .protocol-infographic {
+                flex-direction: row;
+                justify-content: center;
+                align-items: stretch;
+            }
+            .protocol-phase {
+                flex: 1;
             }
         }
-
     </style>
 </head>
 <body>
 
-    <header class="container">
-        <h1 class="reveal">Долгосрочное Влияние Потребления Кофе на Риск Нейродегенеративных Заболеваний</h1>
-        <h2 class="brand reveal">HORMESIS HUB</h2>
+    <header class="main-header container">
+        <h1>Креатин Моногидрат</h1>
+        <p>Ключ к пиковой мощности и силе</p>
     </header>
 
-    <main>
-        <section id="main-thesis">
-            <div class="container">
-                <p class="thesis-text reveal">
-                    <span>Потенциальные нейропротекторные свойства кофе могут быть</span> <span class="highlight-danger">НИВЕЛИРОВАНЫ</span> <span>добавлением сахара. Для пользы здоровью, его следует употреблять</span> НЕСЛАДКИМ.
-                </p>
+    <main id="content">
+        <section id="main-thesis" class="container">
+            <h2>Великий Тезис</h2>
+            <p>
+                Креатин моногидрат является наиболее изученной и эффективной эргогенной добавкой, которая напрямую увеличивает запасы фосфокреатина в мышцах, что приводит к значительному улучшению пиковой мощности, силовых показателей и анаэробной выносливости в коротких, взрывных упражнениях.
+            </p>
+            <span class="citation">Систематический обзор: 'International Society of Sports Nutrition position stand: safety and efficacy of creatine supplementation in exercise, sport, and medicine', Kreider R.B. et al., 2017.</span>
+        </section>
+
+        <section id="mega-factoids" class="container">
+            <h2>Мега-Фактоиды</h2>
+            <div class="factoids-grid">
+                <div class="factoid-card">
+                    <h3 class="factoid-card__title">Количественный Масштаб</h3>
+                    <p>Курсовой прием увеличивает силовые показатели в жимовых упражнениях на <span class="factoid-card__highlight">5-15%</span>, а количество повторений до отказа — на <span class="factoid-card__highlight">10-20%</span>.</p>
+                    <span class="citation">Мета-анализ: 'Effects of creatine supplementation on performance and training adaptations', Rawson E.S. & Volek J.S., 2003.</span>
+                </div>
+                <div class="factoid-card">
+                    <h3 class="factoid-card__title">Удивительный Механизм</h3>
+                    <p>Креатин играет ключевую роль в энергетическом метаболизме мозга. Его прием может улучшать кратковременную память и когнитивные функции, особенно в условиях стресса.</p>
+                     <span class="citation">Систематический обзор: 'Creatine supplementation and cognitive performance in healthy individuals', Avgerinos K.I. et al., 2018.</span>
+                </div>
             </div>
         </section>
 
-        <section id="factoids">
-            <div class="container">
-                <h2 class="reveal">Ключевые Факты</h2>
-                <div class="factoids-grid">
-                    <div class="factoid-card reveal">
-                        <div class="number">-65%</div>
-                        <div class="description">РИСКА ДЕМЕНЦИИ</div>
-                        <p class="context">При потреблении 3-5 чашек в день в среднем возрасте.</p>
-                    </div>
-                    <div class="factoid-card reveal">
-                        <div class="number">x4</div>
-                        <div class="description">ЗАМЕДЛЕНИЕ</div>
-                        <p class="context">Снижения когнитивных функций в течение 10 лет.</p>
-                    </div>
-                    <div class="factoid-card reveal">
-                        <div class="number">-37%</div>
-                        <div class="description">РИСКА БОЛЕЗНЕЙ</div>
-                        <p class="context">Для Альцгеймера и Паркинсона даже у кофе без кофеина.</p>
-                    </div>
-                    <div class="factoid-card reveal">
-                        <div class="number">-47%</div>
-                        <div class="description">СМЕРТНОСТИ</div>
-                         <p class="context">Связанной с нейродегенерацией (несладкий декаф).</p>
-                    </div>
+        <section id="main-analysis" class="container">
+            <h2>Основной Анализ</h2>
+            
+            <h3>Фундаментальный Механизм Действия</h3>
+            <p>Основная функция креатина — участие в системе фосфагенов (АТФ-КФ), самом быстром источнике энергии. Во время интенсивных упражнений (до 10 секунд) фосфокреатин мгновенно ресинтезирует АДФ обратно в АТФ — универсальную энергетическую валюту. Прием добавки увеличивает запасы фосфокреатина на 20-40%, позволяя поддерживать пиковую мощность дольше и быстрее восстанавливаться между подходами.</p>
+            <span class="citation">Обзор: 'Creatine and its application as an ergogenic aid', Cooper R. et al., 2012.</span>
+
+            <h3>Ключевые Эффекты на Производительность</h3>
+            <ul>
+                <li><strong>Увеличение силы и мощности:</strong> За счет повышения доступности АТФ, креатин напрямую улучшает производительность в силовых видах спорта, тяжелой атлетике и спринте.</li>
+                <li><strong>Увеличение мышечной массы:</strong> Креатин способствует увеличению объема мышечных клеток за счет задержки воды (волюмизация), что служит сигналом для анаболических процессов и роста сухой массы.</li>
+                <li><strong>Улучшение анаэробной выносливости:</strong> Способность быстрее ресинтезировать АТФ позволяет выполнять больше работы в серии подходов, что критически важно для бодибилдинга и кроссфита.</li>
+            </ul>
+        </section>
+
+        <section id="infographic" class="container">
+            <h2>Протокол Применения</h2>
+            <div class="protocol-infographic">
+                <div class="protocol-phase">
+                    <h3 class="protocol-phase__title">Фаза Загрузки (Опционально)</h3>
+                    <p class="protocol-phase__dosage">~20 г / день</p>
+                    <p class="protocol-phase__duration">(0.3 г/кг, 4 порции по 5 г) в течение 5-7 дней</p>
+                </div>
+                <div class="protocol-phase">
+                    <h3 class="protocol-phase__title">Поддерживающая Фаза</h3>
+                    <p class="protocol-phase__dosage">3-5 г / день</p>
+                    <p class="protocol-phase__duration">Ежедневно для поддержания уровня</p>
                 </div>
             </div>
+             <span class="citation" style="text-align: center; margin-top: 1rem;">Позиционный документ: 'International Society of Sports Nutrition position stand...', Kreider R.B. et al., 2017.</span>
         </section>
         
-        <section id="comparison">
-            <div class="container">
-                <h2 class="reveal">Поле Битвы</h2>
-                <div class="comparison-grid">
-                    <div class="comparison-block positive reveal">
-                        <h3>НЕСЛАДКИЙ КОФЕ</h3>
-                        <ul>
-                            <li>Связан со снижением риска болезней Альцгеймера и Паркинсона.</li>
-                            <li>Сохраняет нейропротекторные свойства биоактивных соединений.</li>
-                            <li>Положительно влияет на микробиоту кишечника.</li>
-                        </ul>
-                    </div>
-                    <div class="comparison-block negative reveal">
-                        <h3>КОФЕ С САХАРОМ</h3>
-                        <ul>
-                            <li>Нейтрализует или снижает потенциальные преимущества кофе.</li>
-                            <li>Не показал значимых защитных ассоциаций в исследованиях.</li>
-                            <li>Создает дополнительную метаболическую нагрузку на организм.</li>
-                        </ul>
-                    </div>
-                </div>
+        <section id="myth-busting" class="container">
+            <div class="myth-buster">
+                <h2>Разрушение Мифа</h2>
+                <p>Вопреки популярному мифу, многочисленные долгосрочные исследования (длительностью до 5 лет) не выявили никаких доказательств вреда для здоровья почек у здоровых людей, принимающих креатин в рекомендованных дозировках.</p>
+                <span class="citation">РКИ: 'Long-term creatine supplementation does not significantly affect clinical markers of health in athletes', Kreider R.B. et al., 2003.</span>
             </div>
         </section>
 
-        <section id="mechanisms">
-            <div class="container">
-                <h2 class="reveal">Как это работает?</h2>
-                <div class="mechanisms-grid">
-                    <div class="mechanism-card reveal">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-2.5-4-2.5-6.5A4.5 4.5 0 0 0 9 3c0 2.5-1 4.9-2.5 6.5S3 13 3 15a7 7 0 0 0 7 7M9 3v1M15 3v1M12 6a3 3 0 0 0-3 3c0 .83.42 1.57 1 2.09V12a2 2 0 0 0 4 0v-1.09c.58-.52 1-1.26 1-2.09a3 3 0 0 0-3-3"/><path d="M18.8 8.5C18.8 7 18.2 5.8 17 5"/></svg>
-                        <h3>Блокировка Рецепторов</h3>
-                        <p>Кофеин блокирует аденозиновые рецепторы A2A, усиливая синаптическую пластичность и защищая нейроны от повреждений.</p>
-                    </div>
-                    <div class="mechanism-card reveal">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m8.5 10.5 2 2 5-5"/></svg>
-                        <h3>Антиоксидантный Щит</h3>
-                        <p>Полифенолы и хлорогеновые кислоты нейтрализуют окислительный стресс и снижают нейровоспаление — ключевые факторы старения мозга.</p>
-                    </div>
-                    <div class="mechanism-card reveal">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.54 11.23c.3-.4.3-.9 0-1.3l-3.4-4.4A2 2 0 0 0 16.3 5H7.7a2 2 0 0 0-1.84.53l-3.4 4.4c-.3.4-.3.9 0 1.3l7.1 9.22a2 2 0 0 0 3.1 0l7.14-9.22z"/><path d="M5.5 11h13"/><path d="m15.5 5-3 6"/><path d="m8.5 5 3 6"/></svg>
-                        <h3>Контроль Белков</h3>
-                        <p>Соединения кофе препятствуют агрегации вредных белков (β-амилоид, тау, α-синуклеин), лежащих в основе БА и БП.</p>
-                    </div>
-                     <div class="mechanism-card reveal">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6a3 3 0 1 0 0-6 3 3 0 1 0 0 6z"/><path d="M17.6 7.8C19.4 9.6 21 12.5 21 16c0 4-3.5 6-6.5 6h-1c-1.3 0-2.5-1-2.5-2.5v-1.5c0-1-.8-2-2-2s-2 1-2 2v1.5c0 1.5-1.2 2.5-2.5 2.5h-1C3.5 22 0 20 0 16c0-3.5 1.6-6.4 3.4-8.2"/><path d="M4 16H2.5"/><path d="M21.5 16H20"/></svg>
-                        <h3>Гармония Кишечника и Мозга</h3>
-                        <p>Кофе улучшает состав микробиоты кишечника, что снижает системное воспаление и положительно влияет на здоровье мозга через ось "кишечник-мозг".</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="personalization">
-            <div class="container">
-                <h2 class="reveal">Персонализация</h2>
-                <div class="personalization-grid">
-                    <div class="personalization-block reveal">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10c0-4.42-2.87-8.17-6.84-9.5c.52-1.66 1.83-3 3.34-3Z"/><path d="M8 10a2 2 0 1 0 4 0a2 2 0 1 0-4 0"/><path d="M12 16h6"/></svg>
-                        <h3>Дозировка</h3>
-                        <p>Оптимальная доза для большинства — <strong>3-5 чашек</strong> несладкого кофе в день (до 400 мг кофеина).</p>
-                    </div>
-                    <div class="personalization-block risk reveal">
-                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
-                        <h3>Риски</h3>
-                        <p>Главный антагонист — <strong>сахар и подсластители</strong>. Учитывайте генетику и проконсультируйтесь со специалистом.</p>
-                    </div>
-                    <div class="personalization-block reveal">
-                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8z"/><path d="m14.5 9-3 3-3-3"/><path d="m9.5 15 3-3 3 3"/></svg>
-                        <h3>Контекст</h3>
-                        <p>Эффект максимален в рамках здорового образа жизни и диеты. <strong>Генетика</strong> метаболизма кофеина (ген CYP1A2) играет роль.</p>
-                    </div>
-                </div>
-            </div>
+        <section id="synergy-context" class="container">
+            <h2>Контекст и Синергия</h2>
+            <h3>Риски и Побочные Эффекты</h3>
+            <p>Самый частый эффект — увеличение массы тела на 1-2 кг в первую неделю за счет задержки воды. Иногда могут возникать желудочно-кишечные расстройства при приеме больших доз (10+ г) за раз. Существуют "неответчики" (non-responders, ~20-30%), у которых уровень креатина в мышцах изначально высок.</p>
+            <span class="citation">Обзор: 'Creatine Supplementation', Syrotuik D.G. & Bell G.J., 2004.</span>
+            
+            <h3>Синергия</h3>
+            <p>Прием креатина с углеводами (сок, гейнер) может улучшить его усвоение. Эффективность не снижается при одновременном приеме с кофеином. Прием после тренировки может дать небольшое преимущество для восстановления.</p>
+             <span class="citation">Мета-анализ: 'The effects of pre versus post workout supplementation...', Forbes S.C. et al., 2021.</span>
         </section>
 
-        <section id="full-research">
-            <div class="container">
-                <a href="https://disk.yandex.ru/i/44AqDbC1M1D9lQ" target="_blank" class="monumental-button reveal">
-                    Открыть полный свиток исследования
-                </a>
-            </div>
-        </section>
     </main>
-
-    <footer class="container">
-        <p class="footer-credits reveal">Потели над созданием: Yashka_Legend & Искусственный Интеллект</p>
-        <p class="footer-disclaimer reveal">Информация представлена в ознакомительных целях и не является медицинской рекомендацией. Проконсультируйтесь со специалистом.</p>
-        <p class="footer-copy reveal">© 2025 HORMESIS HUB. Стань лучшей версией себя.</p>
+    
+    <footer class="main-footer container">
+        <p>HORMESIS HUB &copy; 2025</p>
+        <p>Это лишь выжимка. <a href="https://disk.yandex.ru/d/ca7dUGLJXUhNeA" class="footer-link" target="_blank" rel="noopener noreferrer">Изучить полный свиток знаний</a>.</p>
     </footer>
 
     <script>
-        // IMPROVEMENT: Added a comment for clarity
-        // This script uses the Intersection Observer API to add a 'visible' class
-        // to elements with the 'reveal' class when they enter the viewport.
-        // This triggers a fade-in animation defined in the CSS.
+        /*
+         * МЕТОДОЛОГИЯ: "Кодирование чистого фронтенд-кода", "Принципы оптимизации веб-производительности"
+         * ПРИНЦИП: DRY (Don't Repeat Yourself).
+         * ПРИНЦИП: Progressive Enhancement. Анимации - улучшение, не обязательная функция.
+         * УЛУЧШЕНИЕ v2.0: Код оставлен максимально чистым и эффективным.
+        */
+        document.addEventListener('DOMContentLoaded', () => {
+            // Отложенный запуск для скрипта, не блокирующий рендеринг.
+            const sections = document.querySelectorAll('section');
 
-        const revealElements = document.querySelectorAll('.reveal');
+            // Проверка наличия элементов перед созданием наблюдателя
+            if (!sections.length) {
+                return;
+            }
+            
+            const handleIntersection = (entries, observer) => {
+                entries.forEach(entry => {
+                    // entry.isIntersecting - более надежное свойство
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Прекратить наблюдение после анимации для экономии ресурсов
+                    }
+                });
+            };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    // Optional: unobserve after revealing to save resources.
-                    // For this monumental page, we let it re-trigger if user scrolls up and down.
-                    // observer.unobserve(entry.target); 
-                }
+            const observer = new IntersectionObserver(handleIntersection, {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.1 // 10% элемента должно быть видимо для срабатывания
             });
-        }, {
-            root: null, // observes intersections relative to the viewport
-            rootMargin: '0px',
-            threshold: 0.1 // triggers when 10% of the element is visible
-        });
 
-        revealElements.forEach(el => {
-            observer.observe(el);
+            sections.forEach(section => observer.observe(section));
         });
     </script>
 </body>
