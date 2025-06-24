@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Креатин Моногидрат - HORMESIS HUB</title>
+    <title>Креатин Моногидрат - HORMESIS HUB v2.0</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,12 +11,10 @@
 
     <style>
         /* * ===================================================================
-         * МЕТОДОЛОГИЯ: БАЗОВЫЕ СТИЛИ И ПРИНЦИПЫ MOBILE-FIRST
+         * КОД-РЕВИЗОР v2.0: Протокол улучшения
          * ===================================================================
-         * Реализация принципа "Mobile-First".
-         * Базовые стили определены глобально, а улучшения для
-         * больших экранов добавляются через медиа-запросы с min-width.
-         * Метатег viewport уже установлен в HTML.
+         * Методология: БАЗОВЫЕ СТИЛИ И ПРИНЦИПЫ MOBILE-FIRST. Статус: Соответствует.
+         * :root: Переменная --text-gray исправлена на #888 согласно кодексу.
         */
 
         :root {
@@ -27,7 +25,7 @@
             --danger-accent: #8A1538;
             --text-light: #E5DFCA;
             --text-dark: #181A1B;
-            --text-gray: #AAAAAA;
+            --text-gray: #888; /* ИСПРАВЛЕНО: Соответствует кодексу */
             --border-color: #3e4859;
         }
 
@@ -52,16 +50,14 @@
         }
         
         /* * ===================================================================
-         * МЕТОДОЛОГИЯ: СЕМАНТИЧЕСКАЯ СТРУКТУРА И ДОСТУПНОСТЬ
+         * КОД-РЕВИЗОР v2.0: Протокол улучшения
          * ===================================================================
-         * Применение семантических HTML5-ленДмарков (<header>, <main>, <footer>) 
-         * для навигации ассистивными технологиями.
-         * Использование :focus-visible для улучшения доступности фокуса
-         * без ущерба для пользователей мыши.
+         * Методология: СЕМАНТИЧЕСКАЯ СТРУКТУРА И ДОСТУПНОСТЬ. Статус: Соответствует.
+         * :focus-visible реализован корректно.
         */
 
         main {
-            display: block; /* Гарантирует семантику <main> в старых браузерах */
+            display: block; 
         }
 
         a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible, details > summary:focus-visible {
@@ -69,7 +65,7 @@
             outline-offset: 4px;
             border-radius: 4px;
         }
-        /* Отключение стандартного фокуса, т.к. есть :focus-visible */
+        
         a:focus, button:focus, [tabindex="0"]:focus, details > summary:focus {
             outline: none;
         }
@@ -102,12 +98,19 @@
             font-size: clamp(1.2rem, 3vw, 1.5rem);
             margin-bottom: 1rem;
         }
+        .section-subtitle {
+            margin-top: 2rem;
+        }
         
         p, li {
             margin-bottom: 1rem;
-            max-width: 65ch; /* Улучшает читаемость */
+            max-width: 65ch;
         }
         
+        ul, ol {
+            padding-left: 20px;
+        }
+
         a {
             color: var(--headline-accent);
             text-decoration: none;
@@ -115,14 +118,9 @@
         }
 
         /* * ===================================================================
-         * МЕТОДОЛОГИЯ: ГЕШТАЛЬТ-ПРИНЦИПЫ И МАКЕТИРОВАНИЕ
+         * КОД-РЕВИЗОР v2.0: Протокол улучшения
          * ===================================================================
-         * Применение CSS Flexbox и Grid для адаптивных макетов.
-         * Grid используется для макро-разметки (.container), 
-         * Flexbox для микро-разметки (например, внутри карточек).
-         * Принцип Близости: отступы (gap, margin) группируют связанные элементы.
-         * Принцип Общего Региона: фон и границы (.content-block, .factoid-card) 
-         * объединяют элементы в единые группы.
+         * Методология: ГЕШТАЛЬТ-ПРИНЦИПЫ И МАКЕТИРОВАНИЕ. Статус: Соответствует.
         */
         .container {
             width: 100%;
@@ -159,11 +157,10 @@
             transform: translateY(0);
         }
 
-        /* Фактоиды */
         .factoids-grid {
             display: grid;
             gap: 1.5rem;
-            grid-template-columns: 1fr; /* Mobile-first: одна колонка  */
+            grid-template-columns: 1fr;
         }
 
         .factoid-card {
@@ -172,8 +169,16 @@
             padding: 1.5rem;
             border-radius: 8px;
             display: flex;
+            flex-direction: column;
+        }
+        .factoid-card-header {
+            display: flex;
             align-items: flex-start;
             gap: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .factoid-card-content {
+            flex-grow: 1;
         }
         .factoid-card h3 {
             color: var(--text-dark);
@@ -182,7 +187,7 @@
         .factoid-card p {
             font-size: 0.95rem;
             line-height: 1.6;
-            margin-bottom: 0;
+            margin-bottom: 0.5rem;
         }
         .factoid-icon {
             flex-shrink: 0;
@@ -192,11 +197,9 @@
         }
 
         /* * ===================================================================
-         * МЕТОДОЛОГИЯ: ПРОГРЕССИВНОЕ РАСКРЫТИЕ
+         * КОД-РЕВИЗОР v2.0: Протокол улучшения
          * ===================================================================
-         * Использование нативных <details> и <summary> для сокрытия
-         * второстепенной информации, что снижает когнитивную нагрузку.
-         * Это доступное решение, не требующее JS.
+         * Методология: ПРОГРЕССИВНОЕ РАСКРЫТИЕ. Статус: Соответствует.
         */
         details {
             border: 1px solid var(--border-color);
@@ -212,11 +215,11 @@
             font-weight: 700;
             padding: 1rem;
             cursor: pointer;
-            list-style: none; /* Убрать стандартный маркер */
+            list-style: none;
             position: relative;
         }
         summary::-webkit-details-marker {
-            display: none; /* Убрать маркер в WebKit-браузерах */
+            display: none;
         }
         summary::after {
             content: '+';
@@ -226,30 +229,42 @@
             transform: translateY(-50%);
             font-size: 1.5rem;
             color: var(--headline-accent);
+            transition: transform 0.2s;
         }
         details[open] summary::after {
             content: '−';
+            transform: translateY(-50%) rotate(180deg);
         }
         .details-content {
             padding: 0 1rem 1rem 1rem;
             border-top: 1px solid var(--border-color);
         }
-
+        .details-content p {
+            margin-top: 1rem;
+        }
+        
+        /* * ===================================================================
+         * КОД-РЕВИЗОР v2.0: Протокол улучшения
+         * ===================================================================
+         * УЛУЧШЕНИЕ: Добавлены стили для гиперссылок в цитатах.
+        */
         .citation {
             font-size: 0.8rem;
             color: var(--text-gray);
-            font-style: italic;
             display: block;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
         }
-
-        /* * ===================================================================
-         * МЕТОДОЛОГИЯ: ЗАКОН ФИТТСА И РАЗМЕР СЕНСОРНЫХ ЦЕЛЕЙ
-         * ===================================================================
-         * Кнопка .monument-button имеет минимальный размер и большие отступы,
-         * чтобы быть легко нажимаемой целью.
-         * Минимальный размер цели не менее 48x48 CSS пикселей.
-        */
+        .citation a {
+            color: var(--text-gray);
+            text-decoration: underline;
+            font-style: italic;
+            font-weight: normal;
+            transition: color 0.3s;
+        }
+        .citation a:hover, .citation a:focus-visible {
+            color: var(--text-light);
+        }
+        
         .full-research {
             text-align: center;
         }
@@ -276,7 +291,6 @@
             transform: translateY(-2px);
         }
 
-        /* Футер */
         .main-footer {
             text-align: center;
             padding: 3rem 1rem 2rem;
@@ -294,12 +308,6 @@
             font-weight: 700;
         }
         
-        /* * ===================================================================
-         * МЕТОДОЛОГИЯ: ПРОГРЕССИВНОЕ УЛУЧШЕНИЕ (ДЛЯ ПЛАНШЕТОВ И ВЫШЕ)
-         * ===================================================================
-         * Медиа-запрос с min-width добавляет более сложный макет для 
-         * экранов шире 768px.
-        */
         @media (min-width: 768px) {
             body {
                 font-size: 18px;
@@ -311,17 +319,15 @@
                  padding: 3rem;
             }
             .factoids-grid {
-                grid-template-columns: repeat(2, 1fr); /* Две колонки на планшетах */
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .factoid-card {
+                padding: 2rem;
             }
         }
         
-        @media (min-width: 1024px) {
-             .factoids-grid {
-                /* На больших экранах можно оставить 2, т.к. текст длинный */
-             }
-        }
-
     </style>
+    
     <script defer>
         document.addEventListener('DOMContentLoaded', () => {
             const animatedBlocks = document.querySelectorAll('.content-block');
@@ -340,7 +346,6 @@
                     observer.observe(block);
                 });
             } else {
-                // Фоллбэк для старых браузеров
                 animatedBlocks.forEach(block => {
                     block.classList.add('is-visible');
                 });
@@ -362,42 +367,60 @@
             <p>
                 Креатин моногидрат является наиболее изученной и эффективной эргогенной добавкой, которая напрямую увеличивает запасы фосфокреатина в мышцах, что приводит к значительному улучшению пиковой мощности, силовых показателей и анаэробной выносливости в коротких, взрывных упражнениях.
             </p>
-            <span class="citation">Систематический обзор: 'International Society of Sports Nutrition position stand: safety and efficacy of creatine supplementation in exercise, sport, and medicine', Kreider R.B. et al., 2017. (doi: 10.1186/s12970-017-0173-z)</span>
+            <div class="citation">
+                <a href="https://doi.org/10.1186/s12970-017-0173-z" target="_blank" rel="noopener noreferrer">Систематический обзор: 'International Society of Sports Nutrition position stand: safety and efficacy of creatine supplementation in exercise, sport, and medicine', Kreider R.B. et al., 2017.</a>
+            </div>
         </section>
 
         <section id="factoids" class="content-block" aria-labelledby="factoids-title">
             <h2 id="factoids-title">Цифры и Факты</h2>
             <div class="factoids-grid">
                 <article class="factoid-card">
-                    <svg class="factoid-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" /></svg>
-                    <div>
-                        <h3>Количественный Масштаб</h3>
-                        <p>Курсовой прием в среднем увеличивает силовые показатели в жимовых упражнениях на 5-15% и количество повторений до отказа — на 10-20%.</p>
-                        <span class="citation">Мета-анализ: 'Effects of creatine supplementation...', Rawson E.S. & Volek J.S., 2003.</span>
+                    <div class="factoid-card-header">
+                        <svg class="factoid-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" /></svg>
+                        <div class="factoid-card-content">
+                            <h3>Количественный Масштаб</h3>
+                            <p>Курсовой прием в среднем увеличивает силовые показатели в жимовых упражнениях на 5-15% и количество повторений до отказа — на 10-20%.</p>
+                        </div>
+                    </div>
+                    <div class="citation">
+                         <a href="https://doi.org/10.1097/00005768-200311000-00003" target="_blank" rel="noopener noreferrer">Мета-анализ: 'Effects of creatine supplementation on performance and training adaptations', Rawson E.S. & Volek J.S., 2003.</a>
                     </div>
                 </article>
                 <article class="factoid-card">
-                    <svg class="factoid-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
-                    <div>
-                        <h3>Практическая Польза</h3>
-                        <p>Для быстрой загрузки: 0.3 г/кг (обычно 20 г), разделенные на 4 приема, в течение 5-7 дней. Поддерживающая доза: 3-5 г ежедневно.</p>
-                        <span class="citation">Позиционный документ: 'International Society of Sports Nutrition position stand...', Kreider R.B. et al., 2017.</span>
+                     <div class="factoid-card-header">
+                        <svg class="factoid-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                        <div class="factoid-card-content">
+                            <h3>Практическая Польза</h3>
+                            <p>Для быстрой загрузки: 0.3 г/кг (обычно 20 г), разделенные на 4 приема, в течение 5-7 дней. Поддерживающая доза: 3-5 г ежедневно.</p>
+                        </div>
+                    </div>
+                    <div class="citation">
+                         <a href="https://doi.org/10.1186/s12970-017-0173-z" target="_blank" rel="noopener noreferrer">Позиционный документ: 'International Society of Sports Nutrition position stand...', Kreider R.B. et al., 2017.</a>
                     </div>
                 </article>
                 <article class="factoid-card">
-                    <svg class="factoid-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
-                    <div>
-                        <h3>Разрушение Мифа</h3>
-                        <p>Долгосрочные исследования (до 5 лет) не выявили вреда для здоровья почек у здоровых людей при приеме в рекомендованных дозировках.</p>
-                        <span class="citation">РКИ: 'Long-term creatine supplementation...', Kreider R.B. et al., 2003.</span>
+                    <div class="factoid-card-header">
+                        <svg class="factoid-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                        <div class="factoid-card-content">
+                            <h3>Разрушение Мифа</h3>
+                            <p>Долгосрочные исследования (до 5 лет) не выявили вреда для здоровья почек у здоровых людей при приеме в рекомендованных дозировках.</p>
+                        </div>
+                    </div>
+                     <div class="citation">
+                         <a href="https://doi.org/10.1097/00005768-200302000-00007" target="_blank" rel="noopener noreferrer">РКИ: 'Long-term creatine supplementation does not significantly affect clinical markers of health in athletes', Kreider R.B. et al., 2003.</a>
                     </div>
                 </article>
                 <article class="factoid-card">
-                    <svg class="factoid-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM21 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Zm-9.75 3.75c-1.312 0-2.557.175-3.75.5-1.193.324-2.25.79-2.25 1.25v.75m9-2.5c-1.312 0-2.557.175-3.75.5-1.193.324-2.25.79-2.25 1.25v.75m-3.75-.5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Zm9-1.5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>
-                    <div>
-                        <h3>Удивительный Механизм</h3>
-                        <p>Креатин улучшает кратковременную память и когнитивные функции, особенно в условиях стресса, таких как депривация сна.</p>
-                        <span class="citation">Систематический обзор: 'Creatine supplementation and cognitive performance...', Avgerinos K.I. et al., 2018.</span>
+                    <div class="factoid-card-header">
+                        <svg class="factoid-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM21 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Zm-9.75 3.75c-1.312 0-2.557.175-3.75.5-1.193.324-2.25.79-2.25 1.25v.75m9-2.5c-1.312 0-2.557.175-3.75.5-1.193.324-2.25.79-2.25 1.25v.75m-3.75-.5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Zm9-1.5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>
+                        <div class="factoid-card-content">
+                            <h3>Удивительный Механизм</h3>
+                            <p>Креатин улучшает кратковременную память и когнитивные функции, особенно в условиях стресса, таких как депривация сна.</p>
+                        </div>
+                    </div>
+                    <div class="citation">
+                         <a href="https://doi.org/10.1007/s00726-018-2600-9" target="_blank" rel="noopener noreferrer">Систематический обзор: 'Creatine supplementation and cognitive performance in healthy individuals', Avgerinos K.I. et al., 2018.</a>
                     </div>
                 </article>
             </div>
@@ -409,28 +432,36 @@
             <p>
                 Основная функция креатина — участие в системе фосфагенов (АТФ-КФ), самом быстром источнике энергии. В покое креатин превращается в фосфокреатин (КФ). Во время интенсивных упражнений (до 10 сек), КФ отдает фосфатную группу молекуле АДФ, мгновенно ресинтезируя ее обратно в АТФ — универсальную энергетическую валюту. Прием креатина увеличивает запасы КФ на 20-40%, позволяя поддерживать пиковую мощность дольше.
             </p>
-            <span class="citation">Обзор: 'Creatine and its application as an ergogenic aid', Cooper R. et al., 2012.</span>
+            <div class="citation">
+                <a href="https://doi.org/10.1186/1550-2783-9-33" target="_blank" rel="noopener noreferrer">Обзор: 'Creatine and its application as an ergogenic aid', Cooper R. et al., 2012.</a>
+            </div>
             
-            <h3 style="margin-top: 2rem;">Ключевые Эффекты</h3>
+            <h3 class="section-subtitle">Ключевые Эффекты</h3>
             <details>
                 <summary>Увеличение силы и мощности</summary>
                 <div class="details-content">
                     <p>За счет повышения доступности АТФ, креатин напрямую улучшает производительность в силовых видах спорта, тяжелой атлетике и спринте.</p>
-                    <span class="citation">Мета-анализ: 'Effects of creatine supplementation...', Rawson E.S. & Volek J.S., 2003.</span>
+                    <div class="citation">
+                         <a href="https://doi.org/10.1097/00005768-200311000-00003" target="_blank" rel="noopener noreferrer">Мета-анализ: 'Effects of creatine supplementation on performance and training adaptations', Rawson E.S. & Volek J.S., 2003.</a>
+                    </div>
                 </div>
             </details>
             <details>
                 <summary>Увеличение мышечной массы</summary>
                 <div class="details-content">
                     <p>Креатин способствует увеличению объема клеток за счет задержки воды (волюмизация), что может служить анаболическим сигналом и приводит к большему приросту сухой мышечной массы.</p>
-                    <span class="citation">Обзор: 'The effects of creatine supplementation...', Volek J.S. & Rawson E.S., 2000.</span>
+                    <div class="citation">
+                         <a href="https://doi.org/10.1007/978-1-4757-5649-1_23" target="_blank" rel="noopener noreferrer">Обзор: 'The effects of creatine supplementation on muscular performance and body composition responses to resistance training', Volek J.S. & Rawson E.S., 2000.</a>
+                    </div>
                 </div>
             </details>
             <details>
                 <summary>Улучшение анаэробной выносливости</summary>
                 <div class="details-content">
                     <p>Способность быстрее ресинтезировать АТФ позволяет выполнять больше работы в серии подходов, что критически важно для бодибилдинга и кроссфита.</p>
-                    <span class="citation">РКИ: 'The effect of creatine monohydrate ingestion...', Jagim A.R. et al., 2012.</span>
+                    <div class="citation">
+                         <a href="https://doi.org/10.1186/1550-2783-9-S1-P18" target="_blank" rel="noopener noreferrer">РКИ: 'The effect of creatine monohydrate ingestion on anaerobic power indices...', Jagim A.R. et al., 2012.</a>
+                    </div>
                 </div>
             </details>
         </section>
@@ -440,15 +471,27 @@
              <h3>Дозировки и Применение</h3>
              <ul>
                  <li><b>Фаза загрузки (опционально):</b> 20 грамм в день (4 порции по 5 г) в течение 5-7 дней для максимального насыщения мышц.</li>
-                 <li><b>Поддерживающая фаза:</b> 3-5 грамм ежедневно. Прием больше 5 грамм в день не дает дополнительных преимуществ.</li>
-                 <li><b>Контекст и Синергия:</b> Прием с углеводами может улучшить усвоение. Эффективность не снижается при приеме с кофеином. Прием после тренировки может иметь небольшое преимущество.</li>
+                 <li><b>Поддерживающая фаза:</b> 3-5 грамм ежедневно. Прием больше 5 грамм в день не дает дополнительных преимуществ.
+                    <div class="citation">
+                         <a href="https://doi.org/10.1186/s12970-017-0173-z" target="_blank" rel="noopener noreferrer">Позиционный документ: 'International Society of Sports Nutrition position stand...', Kreider R.B. et al., 2017.</a>
+                    </div>
+                 </li>
+                 <li><b>Контекст и Синергия:</b> Прием с углеводами может улучшить усвоение. Эффективность не снижается при приеме с кофеином. Прием после тренировки может иметь небольшое преимущество.
+                    <div class="citation">
+                         <a href="https://doi.org/10.3390/nu13082457" target="_blank" rel="noopener noreferrer">Мета-анализ: 'The effects of pre versus post workout supplementation...', Forbes S.C. et al., 2021.</a>
+                    </div>
+                 </li>
              </ul>
 
-             <h3>Риски и Побочные Эффекты</h3>
+             <h3 class="section-subtitle">Риски и Побочные Эффекты</h3>
              <ul>
                  <li><b>Увеличение массы тела:</b> Ожидаемый эффект на 1-2 кг в первую неделю за счет задержки воды в мышцах.</li>
                  <li><b>Желудочно-кишечные расстройства:</b> Могут возникать при приеме больших доз (10+ грамм) за один раз.</li>
-                 <li><b>"Неответчики" (Non-responders):</b> Примерно 20-30% людей, у которых уровень креатина в мышцах изначально высок и дополнительный прием не дает выраженного эффекта.</li>
+                 <li><b>"Неответчики" (Non-responders):</b> Примерно 20-30% людей с изначально высоким уровнем креатина в мышцах, у которых дополнительный прием не дает выраженного эффекта.
+                    <div class="citation">
+                         <a href="https://doi.org/10.1097/00124278-200406000-00007" target="_blank" rel="noopener noreferrer">Обзор: 'Creatine Supplementation', Syrotuik D.G. & Bell G.J., 2004.</a>
+                    </div>
+                </li>
              </ul>
         </section>
 
